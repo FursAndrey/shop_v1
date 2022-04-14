@@ -38,6 +38,9 @@ Route::get('/shop/blog-leftsidebar', function () {
 Route::get('/shop/about-us', function () {
     return view('shop/about-us');
 })->name('about_us');
+Route::get('/shop/contact', function () {
+    return view('shop/contact');
+})->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
