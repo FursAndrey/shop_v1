@@ -53,6 +53,9 @@ Route::get('/shop/checkout', function () {
 Route::get('/shop/wishlist', function () {
     return view('shop/wishlist');
 })->name('wishlist');
+Route::get('/shop/my-account', function () {
+    return view('shop/my-account');
+})->name('my_account');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
