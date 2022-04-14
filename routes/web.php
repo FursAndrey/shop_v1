@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 Route::get('/shop', function () {
     return view('shop/index');
-});
+})->name('index_1');
+Route::get('/shop/i2', function () {
+    return view('shop/index-2');
+})->name('index_2');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

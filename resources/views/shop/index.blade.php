@@ -112,7 +112,7 @@
                                                 </li>
                                                 <li>
                                                     <ul>
-                                                        <li><a href="shop-page.html"><img alt="" src="{{ asset("img/b/menu-img-4.jpg") }}"></a></li>
+                                                        <li><a href="shop-page.html"><img alt="" src="{{ asset("img/banner/menu-img-4.jpg") }}"></a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -659,7 +659,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="deal-img wow fadeInLeft">
-                            <a href="#"><img src="{{ asset("img/b/banner-2.png") }}" alt=""></a>
+                            <a href="#"><img src="{{ asset("img/banner/banner-2.png") }}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -681,7 +681,7 @@
                 </div>
             </div>
         </div>
-		<div class="testimonial-area pt-90 pb-70 bg-img" style="background-image:url({{ asset('img/b/banner-1.jpg') }});">
+		<div class="testimonial-area pt-90 pb-70 bg-img" style="background-image:url({{ asset('img/banner/banner-1.jpg') }});">
 		    <div class="container">
                 <div class="row">
                     <div class="col-lg-10 ml-auto mr-auto">
