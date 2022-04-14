@@ -47,6 +47,9 @@ Route::get('/shop/product-details', function () {
 Route::get('/shop/cart', function () {
     return view('shop/cart');
 })->name('cart');
+Route::get('/shop/checkout', function () {
+    return view('shop/checkout');
+})->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
