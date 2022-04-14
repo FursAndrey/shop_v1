@@ -56,6 +56,9 @@ Route::get('/shop/wishlist', function () {
 Route::get('/shop/my-account', function () {
     return view('shop/my-account');
 })->name('my_account');
+Route::get('/shop/login-register', function () {
+    return view('shop/login-register');
+})->name('login_register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
