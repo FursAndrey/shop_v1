@@ -35,6 +35,9 @@ Route::get('/shop/blog-details', function () {
 Route::get('/shop/blog-leftsidebar', function () {
     return view('shop/blog-leftsidebar');
 })->name('blog_leftsidebar');
+Route::get('/shop/about-us', function () {
+    return view('shop/about-us');
+})->name('about_us');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
