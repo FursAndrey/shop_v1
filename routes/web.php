@@ -41,6 +41,9 @@ Route::get('/shop/about-us', function () {
 Route::get('/shop/contact', function () {
     return view('shop/contact');
 })->name('contact');
+Route::get('/shop/product-details', function () {
+    return view('shop/product-details');
+})->name('product_details');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
