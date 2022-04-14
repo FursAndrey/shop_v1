@@ -50,6 +50,9 @@ Route::get('/shop/cart', function () {
 Route::get('/shop/checkout', function () {
     return view('shop/checkout');
 })->name('checkout');
+Route::get('/shop/wishlist', function () {
+    return view('shop/wishlist');
+})->name('wishlist');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
