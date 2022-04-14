@@ -29,6 +29,9 @@ Route::get('/shop/shop-page', function () {
 Route::get('/shop/blog', function () {
     return view('shop/blog');
 })->name('blog');
+Route::get('/shop/blog-details', function () {
+    return view('shop/blog-details');
+})->name('blog_details');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
