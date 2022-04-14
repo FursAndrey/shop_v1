@@ -7,18 +7,18 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset("img/favicon.png") }}">
 		
 		<!-- all css here -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/simple-line-icons.css">
-        <link rel="stylesheet" href="assets/css/themify-icons.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/animate.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/simple-line-icons.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/themify-icons.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/owl.carousel.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/meanmenu.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/responsive.css") }}">
+        <script src="{{ asset("js/vendor/modernizr-2.8.3.min.js") }}"></script>
     </head>
     <body>
         <header class="header-area">
@@ -41,12 +41,12 @@
                                             <li><a href="#">Dirham (AED)</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#"><img alt="flag" src="assets/img/icon-img/en.jpg"> English  <i class="icon-arrow-down"></i></a>
+                                    <li><a href="#"><img alt="flag" src="{{ asset("img/icon-img/en.jpg") }}"> English  <i class="icon-arrow-down"></i></a>
                                         <ul>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/bl.jpg">Bangla </a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/ar.jpg">Arabic</a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/in.jpg">Hindi </a></li>
-                                            <li><a href="#"><img alt="flag" src="assets/img/icon-img/sp.jpg">Spanish</a></li>
+                                            <li><a href="#"><img alt="flag" src="{{ asset("img/icon-img/bl.jpg") }}">Bangla </a></li>
+                                            <li><a href="#"><img alt="flag" src="{{ asset("img/icon-img/ar.jpg") }}">Arabic</a></li>
+                                            <li><a href="#"><img alt="flag" src="{{ asset("img/icon-img/in.jpg") }}">Hindi </a></li>
+                                            <li><a href="#"><img alt="flag" src="{{ asset("img/icon-img/sp.jpg") }}">Spanish</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -60,7 +60,7 @@
                     <div class="row">
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-5">
                             <div class="logo pt-39">
-                                <a href="index.html"><img alt="" src="assets/img/logo/logo.png"></a>
+                                <a href="index.html"><img alt="" src="{{ asset("img/logo/logo.png") }}"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7 d-none d-lg-block">
@@ -111,7 +111,7 @@
                                                 </li>
                                                 <li>
                                                     <ul>
-                                                        <li><a href="shop-page.html"><img alt="" src="assets/img/banner/menu-img-4.jpg"></a></li>
+                                                        <li><a href="shop-page.html"><img alt="" src="{{ asset("img/banner/menu-img-4.jpg") }}"></a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -197,7 +197,7 @@
                                         <ul>
                                             <li class="single-shopping-cart">
                                                 <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
+                                                    <a href="#"><img alt="" src="{{ asset("img/cart/cart-1.jpg") }}"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food </a></h4>
@@ -210,7 +210,7 @@
                                             </li>
                                             <li class="single-shopping-cart">
                                                 <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="assets/img/cart/cart-2.jpg"></a>
+                                                    <a href="#"><img alt="" src="{{ asset("img/cart/cart-2.jpg") }}"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">Dog Calcium Food</a></h4>
@@ -331,7 +331,7 @@
                 </div>
             </div>
         </header>
-        <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url(assets/img/banner/banner-2.jpg);">
+        <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url({{ asset('img/banner/banner-2.jpg') }});">
             <div class="container">
                 <div class="breadcrumb-content text-center">
                     <h2>Blog</h2>
@@ -348,7 +348,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-4.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-4.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -364,7 +364,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-5.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-5.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -380,7 +380,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-6.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-6.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -396,7 +396,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-7.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-7.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -412,7 +412,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-8.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-8.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -428,7 +428,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-9.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ asset("img/blog/blog-9.jpg") }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -469,7 +469,7 @@
                                 <div class="footer-info-wrapper">
                                     <div class="footer-logo">
                                         <a href="#">
-                                            <img src="assets/img/logo/logo-2.png" alt="">
+                                            <img src="{{ asset("img/logo/logo-2.png") }}" alt="">
                                         </a>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, co adipisi elit, sed eiusmod tempor incididunt ut labore et dolore</p>
@@ -530,7 +530,7 @@
                                 </div>
                                 <div class="payment-img">
                                     <a href="index.html">
-                                        <img src="assets/img/icon-img/payment.png" alt="">
+                                        <img src="{{ asset("img/icon-img/payment.png") }}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -555,15 +555,15 @@
 		
 		
 		<!-- all js here -->
-        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="assets/js/popper.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.counterup.min.js"></script>
-        <script src="assets/js/waypoints.min.js"></script>
-        <script src="assets/js/elevetezoom.js"></script>
-        <script src="assets/js/ajax-mail.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset("js/vendor/jquery-1.12.0.min.js") }}"></script>
+        <script src="{{ asset("js/popper.js") }}"></script>
+        <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("js/jquery.counterup.min.js") }}"></script>
+        <script src="{{ asset("js/waypoints.min.js") }}"></script>
+        <script src="{{ asset("js/elevetezoom.js") }}"></script>
+        <script src="{{ asset("js/ajax-mail.js") }}"></script>
+        <script src="{{ asset("js/owl.carousel.min.js") }}"></script>
+        <script src="{{ asset("js/plugins.js") }}"></script>
+        <script src="{{ asset("js/main.js") }}"></script>
     </body>
 </html>

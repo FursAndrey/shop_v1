@@ -26,6 +26,9 @@ Route::get('/shop/i2', function () {
 Route::get('/shop/shop-page', function () {
     return view('shop/shop-page');
 })->name('shop_page');
+Route::get('/shop/blog', function () {
+    return view('shop/blog');
+})->name('blog');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
