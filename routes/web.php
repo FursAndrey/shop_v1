@@ -32,6 +32,9 @@ Route::get('/shop/blog', function () {
 Route::get('/shop/blog-details', function () {
     return view('shop/blog-details');
 })->name('blog_details');
+Route::get('/shop/blog-leftsidebar', function () {
+    return view('shop/blog-leftsidebar');
+})->name('blog_leftsidebar');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
