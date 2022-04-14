@@ -44,6 +44,9 @@ Route::get('/shop/contact', function () {
 Route::get('/shop/product-details', function () {
     return view('shop/product-details');
 })->name('product_details');
+Route::get('/shop/cart', function () {
+    return view('shop/cart');
+})->name('cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
