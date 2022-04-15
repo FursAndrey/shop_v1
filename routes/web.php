@@ -19,13 +19,16 @@ Route::get('/', function () {
 
 Route::get('/shop', function () {
     return view('shop/index');
-})->name('index_1');
+})->name('ind_1');
 Route::get('/shop/i2', function () {
     return view('shop/index-2');
-})->name('index_2');
+})->name('ind_2');
 Route::get('/shop/shop-page', function () {
     return view('shop/shop-page');
 })->name('shop_page');
+Route::get('/shop/shop-list', function () {
+    return view('shop/shop-list');
+})->name('shop_list');
 Route::get('/shop/blog', function () {
     return view('shop/blog');
 })->name('blog');
