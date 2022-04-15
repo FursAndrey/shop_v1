@@ -29,15 +29,15 @@ Route::get('/shop/shop-page', function () {
 Route::get('/shop/shop-list', function () {
     return view('shop/shop-list');
 })->name('shop_list');
-Route::get('/shop/blog', function () {
-    return view('shop/blog');
-})->name('blog');
-Route::get('/shop/blog-details', function () {
-    return view('shop/blog-details');
-})->name('blog_details');
-Route::get('/shop/blog-leftsidebar', function () {
-    return view('shop/blog-leftsidebar');
-})->name('blog_leftsidebar');
+// Route::get('/shop/blog', function () {
+//     return view('shop/blog');
+// })->name('blog');
+// Route::get('/shop/blog-details', function () {
+//     return view('shop/blog-details');
+// })->name('blog_details');
+// Route::get('/shop/blog-leftsidebar', function () {
+//     return view('shop/blog-leftsidebar');
+// })->name('blog_leftsidebar');
 Route::get('/shop/about-us', function () {
     return view('shop/about-us');
 })->name('about_us');
@@ -59,9 +59,9 @@ Route::get('/shop/wishlist', function () {
 Route::get('/shop/my-account', function () {
     return view('shop/my-account');
 })->name('my_account');
-Route::get('/shop/login-register', function () {
-    return view('shop/login-register');
-})->name('login_register');
+// Route::get('/shop/login-register', function () {
+//     return view('shop/login-register');
+// })->name('login_register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
