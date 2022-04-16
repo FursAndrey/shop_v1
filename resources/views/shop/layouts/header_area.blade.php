@@ -37,58 +37,58 @@
             <div class="row">
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-5">
                     <div class="logo pt-39">
-                        <a href="index.html"><img alt="" src="{{ asset("img/logo/logo.png") }}"></a>
+                        <a href="{{ route('ind_1') }}"><img alt="" src="{{ asset("img/logo/logo.png") }}"></a>
                     </div>
                 </div>
                 <div class="col-xl-8 col-lg-7 d-none d-lg-block">
                     <div class="main-menu text-center">
                         <nav>
                             <ul>
-                                <li><a href="index.html">HOME</a>
+                                <li><a href="{{ route('ind_1') }}">HOME</a>
                                     <ul class="submenu">
                                         <li>
-                                            <a href="index.html">home version 1</a>
+                                            <a href="{{ route('ind_1') }}">home version 1</a>
                                         </li>
                                         <li>
-                                            <a href="index-2.html">home version 2</a>
+                                            <a href="{{ route('ind_2') }}">home version 2</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="mega-menu-position"><a href="shop-page.html">Food</a>
+                                <li class="mega-menu-position"><a href="{{ route('shop_page') }}">Food</a>
                                     <ul class="mega-menu">
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title">Dogs Food</li>
-                                                <li><a href="shop-page.html">Eggs</a></li>
-                                                <li><a href="shop-page.html">Carrots</a></li>
-                                                <li><a href="shop-page.html">Salmon fishs</a></li>
-                                                <li><a href="shop-page.html">Peanut Butter</a></li>
-                                                <li><a href="shop-page.html">Grapes & Raisins</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Carrots</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Salmon fishs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Peanut Butter</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Grapes & Raisins</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title">Cats Food</li>
-                                                <li><a href="shop-page.html">Meat</a></li>
-                                                <li><a href="shop-page.html">Fish</a></li>
-                                                <li><a href="shop-page.html">Eggs</a></li>
-                                                <li><a href="shop-page.html">Veggies</a></li>
-                                                <li><a href="shop-page.html">Cheese</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Meat</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Fish</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title">Fishs Food</li>
-                                                <li><a href="shop-page.html">Rice</a></li>
-                                                <li><a href="shop-page.html">Veggies</a></li>
-                                                <li><a href="shop-page.html">Cheese</a></li>
-                                                <li><a href="shop-page.html">wheat bran</a></li>
-                                                <li><a href="shop-page.html">Cultivation</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Rice</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
+                                                <li><a href="{{ route('shop_page') }}">wheat bran</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cultivation</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <ul>
-                                                <li><a href="shop-page.html"><img alt="" src="{{ asset("img/banner/menu-img-4.jpg") }}"></a></li>
+                                                <li><a href="{{ route('shop_page') }}"><img alt="" src="{{ asset("img/banner/menu-img-4.jpg") }}"></a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -96,52 +96,36 @@
                                 <li><a href="#">PAGES</a>
                                     <ul class="submenu">
                                         <li>
-                                            <a href="about-us.html">about us</a>
+                                            <a href="{{ route('about_us') }}">about us</a>
                                         </li>
                                         <li>
-                                            <a href="shop-page.html">shop page</a>
+                                            <a href="{{ route('shop_page') }}">shop page</a>
                                         </li>
                                         <li>
-                                            <a href="shop-list.html">shop list</a>
+                                            <a href="{{ route('shop_list') }}">shop list</a>
                                         </li>
                                         <li>
-                                            <a href="product-details.html">product details</a>
+                                            <a href="{{ route('product_details') }}">product details</a>
                                         </li>
                                         <li>
-                                            <a href="cart.html">cart page</a>
+                                            <a href="{{ route('cart') }}">cart page</a>
                                         </li>
                                         <li>
-                                            <a href="checkout.html">checkout</a>
+                                            <a href="{{ route('checkout') }}">checkout</a>
                                         </li>
                                         <li>
-                                            <a href="wishlist.html">wishlist</a>
+                                            <a href="{{ route('wishlist') }}">wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="contact.html">contact us</a>
+                                            <a href="{{ route('contact') }}">contact us</a>
                                         </li>
                                         <li>
-                                            <a href="my-account.html">my account</a>
-                                        </li>
-                                        <li>
-                                            <a href="login-register.html">login / register</a>
+                                            <a href="{{ route('my_account') }}">my account</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="blog-leftsidebar.html">Blog</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="blog.html">blog page</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-leftsidebar.html">blog left sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-details.html">blog details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">ABOUT</a></li>
-                                <li><a href="contact.html">contact us</a></li>
+                                <li><a href="{{ route('about_us') }}">ABOUT</a></li>
+                                <li><a href="{{ route('contact') }}">contact us</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -204,8 +188,8 @@
                                     <h4>Total : <span class="shop-total">$260.00</span></h4>
                                 </div>
                                 <div class="shopping-cart-btn">
-                                    <a href="cart.html">view cart</a>
-                                    <a href="checkout.html">checkout</a>
+                                    <a href="{{ route('cart') }}">view cart</a>
+                                    <a href="{{ route('checkout') }}">checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -217,38 +201,38 @@
                             <ul class="menu-overflow">
                                 <li><a href="#">HOME</a>
                                     <ul>
-                                        <li><a href="index.html">home version 1</a></li>
-                                        <li><a href="index-2.html">home version 2</a></li>
+                                        <li><a href="{{ route('ind_1') }}">home version 1</a></li>
+                                        <li><a href="{{ route('ind_2') }}">home version 2</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">pages</a>
                                     <ul>
                                         <li>
-                                            <a href="about-us.html">about us</a>
+                                            <a href="{{ route('about_us') }}">about us</a>
                                         </li>
                                         <li>
-                                            <a href="shop-page.html">shop page</a>
+                                            <a href="{{ route('shop_page') }}">shop page</a>
                                         </li>
                                         <li>
-                                            <a href="shop-list.html">shop list</a>
+                                            <a href="{{ route('shop_list') }}">shop list</a>
                                         </li>
                                         <li>
-                                            <a href="product-details.html">product details</a>
+                                            <a href="{{ route('product_details') }}">product details</a>
                                         </li>
                                         <li>
-                                            <a href="cart.html">cart page</a>
+                                            <a href="{{ route('cart') }}">cart page</a>
                                         </li>
                                         <li>
-                                            <a href="checkout.html">checkout</a>
+                                            <a href="{{ route('checkout') }}">checkout</a>
                                         </li>
                                         <li>
-                                            <a href="wishlist.html">wishlist</a>
+                                            <a href="{{ route('wishlist') }}">wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="contact.html">contact us</a>
+                                            <a href="{{ route('contact') }}">contact us</a>
                                         </li>
                                         <li>
-                                            <a href="my-account.html">my account</a>
+                                            <a href="{{ route('my_account') }}">my account</a>
                                         </li>
                                         <li>
                                             <a href="login-register.html">login / register</a>
@@ -259,29 +243,29 @@
                                     <ul>
                                         <li><a href="#">Dogs Food</a>
                                             <ul>
-                                                <li><a href="shop-page.html">Grapes and Raisins</a></li>
-                                                <li><a href="shop-page.html">Carrots</a></li>
-                                                <li><a href="shop-page.html">Peanut Butter</a></li>
-                                                <li><a href="shop-page.html">Salmon fishs</a></li>
-                                                <li><a href="shop-page.html">Eggs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Grapes and Raisins</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Carrots</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Peanut Butter</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Salmon fishs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">Cats Food</a>
                                             <ul>
-                                                <li><a href="shop-page.html">Meat</a></li>
-                                                <li><a href="shop-page.html">Fish</a></li>
-                                                <li><a href="shop-page.html">Eggs</a></li>
-                                                <li><a href="shop-page.html">Veggies</a></li>
-                                                <li><a href="shop-page.html">Cheese</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Meat</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Fish</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">Fishs Food</a>
                                             <ul>
-                                                <li><a href="shop-page.html">Rice</a></li>
-                                                <li><a href="shop-page.html">Veggies</a></li>
-                                                <li><a href="shop-page.html">Cheese</a></li>
-                                                <li><a href="shop-page.html">wheat bran</a></li>
-                                                <li><a href="shop-page.html">Cultivation</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Rice</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
+                                                <li><a href="{{ route('shop_page') }}">wheat bran</a></li>
+                                                <li><a href="{{ route('shop_page') }}">Cultivation</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -299,7 +283,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html"> Contact us </a></li>
+                                <li><a href="{{ route('contact') }}"> Contact us </a></li>
                             </ul>
                         </nav>
                     </div>

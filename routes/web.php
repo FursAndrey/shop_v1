@@ -20,48 +20,46 @@ Route::get('/', function () {
 Route::get('/shop', function () {
     return view('shop/index');
 })->name('ind_1');
+
 Route::get('/shop/i2', function () {
     return view('shop/index-2');
 })->name('ind_2');
+
 Route::get('/shop/shop-page', function () {
     return view('shop/shop-page');
 })->name('shop_page');
+
 Route::get('/shop/shop-list', function () {
     return view('shop/shop-list');
 })->name('shop_list');
-// Route::get('/shop/blog', function () {
-//     return view('shop/blog');
-// })->name('blog');
-// Route::get('/shop/blog-details', function () {
-//     return view('shop/blog-details');
-// })->name('blog_details');
-// Route::get('/shop/blog-leftsidebar', function () {
-//     return view('shop/blog-leftsidebar');
-// })->name('blog_leftsidebar');
+
 Route::get('/shop/about-us', function () {
     return view('shop/about-us');
 })->name('about_us');
+
 Route::get('/shop/contact', function () {
     return view('shop/contact');
 })->name('contact');
+
 Route::get('/shop/product-details', function () {
     return view('shop/product-details');
 })->name('product_details');
+
 Route::get('/shop/cart', function () {
     return view('shop/cart');
 })->name('cart');
+
 Route::get('/shop/checkout', function () {
     return view('shop/checkout');
 })->name('checkout');
+
 Route::get('/shop/wishlist', function () {
     return view('shop/wishlist');
 })->name('wishlist');
+
 Route::get('/shop/my-account', function () {
     return view('shop/my-account');
 })->name('my_account');
-// Route::get('/shop/login-register', function () {
-//     return view('shop/login-register');
-// })->name('login_register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

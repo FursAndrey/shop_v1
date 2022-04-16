@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="payment-img">
-                            <a href="index.html">
+                            <a href="{{ route('ind_1') }}">
                                 <img src="{{ asset("img/icon-img/payment.png") }}" alt="">
                             </a>
                         </div>

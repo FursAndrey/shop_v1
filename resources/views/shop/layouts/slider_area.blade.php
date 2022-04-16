@@ -8,7 +8,7 @@
                             <h3 class="animated">We keep pets for pleasure.</h3>
                             <h1 class="animated">Food & Vitamins <br>For all Pets</h1>
                             <div class="slider-btn">
-                                <a class="animated" href="product-details.html">SHOP NOW</a>
+                                <a class="animated" href="{{ route('product_details') }}">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <h3 class="animated">We keep pets for pleasure.</h3>
                             <h1 class="animated">Food & Vitamins <br>For all Pets</h1>
                             <div class="slider-btn">
-                                <a class="animated" href="product-details.html">SHOP NOW</a>
+                                <a class="animated" href="{{ route('product_details') }}">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
