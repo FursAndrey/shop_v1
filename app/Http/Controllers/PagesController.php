@@ -37,10 +37,12 @@ class PagesController extends Controller
     public function shop_page()
     {
         $categories = Category::select('name')->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'description')->paginate(9);
         return view(
             'shop/shop-page',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'products' => $products
             ]
         );
     }
