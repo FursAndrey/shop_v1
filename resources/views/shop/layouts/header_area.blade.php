@@ -54,43 +54,13 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="mega-menu-position"><a href="{{ route('shop_page') }}">Food</a>
-                                    <ul class="mega-menu">
-                                        <li>
-                                            <ul>
-                                                <li class="mega-menu-title">Dogs Food</li>
-                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Carrots</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Salmon fishs</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Peanut Butter</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Grapes & Raisins</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li class="mega-menu-title">Cats Food</li>
-                                                <li><a href="{{ route('shop_page') }}">Meat</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Fish</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Eggs</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li class="mega-menu-title">Fishs Food</li>
-                                                <li><a href="{{ route('shop_page') }}">Rice</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Veggies</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Cheese</a></li>
-                                                <li><a href="{{ route('shop_page') }}">wheat bran</a></li>
-                                                <li><a href="{{ route('shop_page') }}">Cultivation</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li><a href="{{ route('shop_page') }}"><img alt="" src="{{ asset("img/banner/menu-img-4.jpg") }}"></a></li>
-                                            </ul>
-                                        </li>
+                                <li><a href="{{ route('shop_page') }}">Category</a>
+                                    <ul class="submenu">
+                                        <li><a href="{{ route('shop_page') }}">Eggs</a></li>
+                                        <li><a href="{{ route('shop_page') }}">Carrots</a></li>
+                                        <li><a href="{{ route('shop_page') }}">Salmon fishs</a></li>
+                                        <li><a href="{{ route('shop_page') }}">Peanut Butter</a></li>
+                                        <li><a href="{{ route('shop_page') }}">Grapes & Raisins</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">PAGES</a>
