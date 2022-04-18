@@ -16,4 +16,9 @@ class Product extends Model
         'img',
         'category_id',
     ];
+    
+    public function getImgForViewAttribute()
+    {
+        return 'storage/'.$this->img;
+    }
 }

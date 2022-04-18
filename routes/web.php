@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,49 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/shop', function () {
-    return view('shop/index');
-})->name('ind_1');
+Route::get('/shop', [PagesController::class, 'indexPage'])->name('ind_1');
 
-Route::get('/shop/i2', function () {
-    return view('shop/index-2');
-})->name('ind_2');
-
-Route::get('/shop/shop-page', function () {
-    return view('shop/shop-page');
-})->name('shop_page');
-
-Route::get('/shop/shop-list', function () {
-    return view('shop/shop-list');
-})->name('shop_list');
-
-Route::get('/shop/about-us', function () {
-    return view('shop/about-us');
-})->name('about_us');
-
-Route::get('/shop/contact', function () {
-    return view('shop/contact');
-})->name('contact');
-
-Route::get('/shop/product-details', function () {
-    return view('shop/product-details');
-})->name('product_details');
-
-Route::get('/shop/cart', function () {
-    return view('shop/cart');
-})->name('cart');
-
-Route::get('/shop/checkout', function () {
-    return view('shop/checkout');
-})->name('checkout');
-
-Route::get('/shop/wishlist', function () {
-    return view('shop/wishlist');
-})->name('wishlist');
-
-Route::get('/shop/my-account', function () {
-    return view('shop/my-account');
-})->name('my_account');
+Route::get('/shop/ind-2', [PagesController::class, 'indexPage2'])->name('ind_2');
+Route::get('/shop/shop-page', [PagesController::class, 'shop_page'])->name('shop_page');
+Route::get('/shop/shop-list', [PagesController::class, 'shop_list'])->name('shop_list');
+Route::get('/shop/about-us', [PagesController::class, 'about_us'])->name('about_us');
+Route::get('/shop/contact', [PagesController::class, 'contact'])->name('contact');
+Route::get('/shop/product-details', [PagesController::class, 'product_details'])->name('product_details');
+Route::get('/shop/cart', [PagesController::class, 'cart'])->name('cart');
+Route::get('/shop/checkout', [PagesController::class, 'checkout'])->name('checkout');
+Route::get('/shop/wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
+Route::get('/shop/my-account', [PagesController::class, 'my_account'])->name('my_account');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -56,11 +56,9 @@
                                 </li>
                                 <li><a href="{{ route('shop_page') }}">Category</a>
                                     <ul class="submenu">
-                                        <li><a href="{{ route('shop_page') }}">Eggs</a></li>
-                                        <li><a href="{{ route('shop_page') }}">Carrots</a></li>
-                                        <li><a href="{{ route('shop_page') }}">Salmon fishs</a></li>
-                                        <li><a href="{{ route('shop_page') }}">Peanut Butter</a></li>
-                                        <li><a href="{{ route('shop_page') }}">Grapes & Raisins</a></li>
+                                        @foreach ($categories as $category)
+                                            <li><a href="{{ route('shop_page') }}">{{ $category->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="#">PAGES</a>
