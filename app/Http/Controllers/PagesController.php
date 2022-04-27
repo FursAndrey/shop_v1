@@ -11,7 +11,7 @@ class PagesController extends Controller
     public function indexPage()
     {
         $categories = Category::select('name')->get();
-        $products = Product::select('short_name', 'img', 'price')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
         return view(
             'shop/index',
             [
@@ -24,7 +24,7 @@ class PagesController extends Controller
     public function indexPage2()
     {
         $categories = Category::select('name')->get();
-        $products = Product::select('short_name', 'img', 'price')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -38,11 +38,13 @@ class PagesController extends Controller
     {
         $categories = Category::select('name')->get();
         $products = Product::select('id', 'short_name', 'img', 'price', 'description')->paginate(9);
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/shop-page',
             [
                 'categories' => $categories,
-                'products' => $products
+                'products' => $products,
+                'banner' => $banner,
             ]
         );
     }
@@ -50,10 +52,14 @@ class PagesController extends Controller
     public function shop_list()
     {
         $categories = Category::select('name')->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'description')->paginate(9);
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/shop-list',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'products' => $products,
+                'banner' => $banner,
             ]
         );
     }
@@ -61,10 +67,12 @@ class PagesController extends Controller
     public function about_us()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/about-us',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }
@@ -72,21 +80,27 @@ class PagesController extends Controller
     public function contact()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/contact',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }
 
-    public function product_details()
+    public function product_details(int $product_id)
     {
+        $product = Product::findOrFail($product_id);
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/product-details',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'product' => $product,
+                'banner' => $banner,
             ]
         );
     }
@@ -94,10 +108,12 @@ class PagesController extends Controller
     public function cart()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/cart',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }
@@ -105,10 +121,12 @@ class PagesController extends Controller
     public function checkout()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/checkout',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }
@@ -116,10 +134,12 @@ class PagesController extends Controller
     public function wishlist()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/wishlist',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }
@@ -127,10 +147,12 @@ class PagesController extends Controller
     public function my_account()
     {
         $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];
         return view(
             'shop/my-account',
             [
-                'categories' => $categories
+                'categories' => $categories,
+                'banner' => $banner,
             ]
         );
     }

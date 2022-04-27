@@ -25,7 +25,7 @@ Route::get('/shop/shop-page', [PagesController::class, 'shop_page'])->name('shop
 Route::get('/shop/shop-list', [PagesController::class, 'shop_list'])->name('shop_list');
 Route::get('/shop/about-us', [PagesController::class, 'about_us'])->name('about_us');
 Route::get('/shop/contact', [PagesController::class, 'contact'])->name('contact');
-Route::get('/shop/product-details', [PagesController::class, 'product_details'])->name('product_details');
+Route::get('/shop/product-details/{product_id}', [PagesController::class, 'product_details'])->name('product_details');
 Route::get('/shop/cart', [PagesController::class, 'cart'])->name('cart');
 Route::get('/shop/checkout', [PagesController::class, 'checkout'])->name('checkout');
 Route::get('/shop/wishlist', [PagesController::class, 'wishlist'])->name('wishlist');

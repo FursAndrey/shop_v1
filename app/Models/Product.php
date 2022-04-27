@@ -19,6 +19,6 @@ class Product extends Model
     
     public function getImgForViewAttribute()
     {
-        return 'storage/'.$this->img;
+        return 'storage/'.str_replace('\\', '/', $this->img);
     }
 }
