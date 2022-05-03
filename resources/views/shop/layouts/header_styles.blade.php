@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="{{ asset("css/meanmenu.min.css") }}">
 <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 <link rel="stylesheet" href="{{ asset("css/responsive.css") }}">
+<link rel="stylesheet" href="{{ asset("css/custom.css") }}">
 <script src="{{ asset("js/vendor/modernizr-2.8.3.min.js") }}"></script>

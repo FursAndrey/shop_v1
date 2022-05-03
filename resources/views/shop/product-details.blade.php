@@ -52,10 +52,13 @@
                         </div>
                         <div class="product-list-action">
                             <div class="product-list-action-left">
-                                <a class="addtocart-btn" href="#" title="Add to cart">
-                                    <i class="ion-bag"></i>
-                                    Add to cart
-                                </a>
+                                <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="addtocart-btn" title="Add to cart">
+                                        <i class="ion-bag"></i>
+                                        Add to cart
+                                    </button>
+                                </form>
                             </div>
                             <div class="product-list-action-right">&nbsp;</div>
                         </div>
@@ -179,176 +182,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="related-product-area pt-95 pb-80 gray-bg">
-        <div class="container">
-            <div class="section-title text-center mb-55">
-                <h4>Most Populer</h4>
-                <h2>Related Products</h2>
-            </div>
-            <div class="related-product-active owl-carousel">
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-4.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Dog Calcium Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$20.00 </span>
-                            <span class="old">$50.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-5.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Cat Buffalo Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$22.00 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-6.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Legacy Dog Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$50.00 </span>
-                            <span class="old">$70.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-7.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Chicken Dry Cat Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$60.00 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-8.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Stomach Dog Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$70.00 </span>
-                            <span class="old">$90.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="{{ route('product_details') }}">
-                            <img src="{{ asset("img/product/product-9.jpg") }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="{{ route('product_details') }}">Nourish Puppy Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$80.00 </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
     @include('../shop/layouts/footer_area')
     <!-- modal -->

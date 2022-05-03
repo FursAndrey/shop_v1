@@ -1,0 +1,22 @@
+#flashes p {
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 3px 25px;
+    position: absolute;
+    border-radius: 10px;
+}
+
+#flashes p.succes {
+    background-color: rgb(180 255 186);
+    color: #036a03;
+}
+
+#flashes p.error {
+    background-color: rgb(255, 185, 185);
+    color: rgb(128, 0, 0);
+}
+
+#flashes p.warning {
+    background-color: rgb(255, 237, 176);
+    color: rgb(128, 105, 0);
+}

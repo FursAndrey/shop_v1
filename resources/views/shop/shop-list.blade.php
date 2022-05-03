@@ -49,9 +49,13 @@
                                                     <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                                         <i class="ti-plus"></i>
                                                     </a>
-                                                    <a title="Add To Cart" href="#">
-                                                        <i class="ti-shopping-cart"></i>
-                                                    </a>
+                                                    <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" title="Add to cart">
+                                                            <i class="ti-shopping-cart"></i>
+                                                            Add to cart
+                                                        </button>
+                                                    </form>
                                                 </div>
                                                 <div class="product-action-wishlist">
                                                     <a title="Wishlist" href="#">
@@ -73,7 +77,13 @@
                                                 <p>{{ $product->description }}</p>
                                                 <div class="product-list-action">
                                                     <div class="product-list-action-left">
-                                                        <a class="addtocart-btn" title="Add to cart" href="#"><i class="ion-bag"></i> Add to cart</a>
+                                                        <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="addtocart-btn" title="Add to cart">
+                                                                <i class="ion-bag"></i>
+                                                                Add to cart
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                     <div class="product-list-action-right">
                                                         <a title="Wishlist" href="#"><i class="ti-heart"></i></a>

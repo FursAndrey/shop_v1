@@ -21,4 +21,13 @@ class Product extends Model
     {
         return 'storage/'.str_replace('\\', '/', $this->img);
     }
+
+    public function getPriceForCountAttribute()
+    {
+        if (!is_null($this->pivot)) {
+            return $this->price * $this->pivot->count;
+        } else {
+            return $this->price;
+        }
+    }
 }

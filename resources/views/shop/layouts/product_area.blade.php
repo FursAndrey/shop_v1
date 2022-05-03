@@ -16,9 +16,12 @@
                                 <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                     <i class="ti-plus"></i>
                                 </a>
-                                <a title="Add To Cart" href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
+                                <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="addtocart-btn" title="Add to cart">
+                                        <i class="ti-shopping-cart"></i>
+                                    </button>
+                                </form>
                             </div>
                             <div class="product-action-wishlist">
                                 <a title="Wishlist" href="#">

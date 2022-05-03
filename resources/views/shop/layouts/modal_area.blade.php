@@ -73,7 +73,10 @@
                                 <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">
                             </div>
                             <div class="quickview-btn-cart">
-                                <a class="btn-style" href="#">add to cart</a>
+                                <form action="{{ route('add_product', 0) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn-style">Add to cart</button>
+                                </form>
                             </div>
                             <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="ti-heart"></i></a>
