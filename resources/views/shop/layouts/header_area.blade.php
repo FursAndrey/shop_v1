@@ -117,7 +117,9 @@
                             </div>
                         </div>
                         <div class="header-login same-style">
-                            <a href="login-register.html"><i class="icon-user icons"></i></a>
+                            @guest
+                                <a href="{{ route('register') }}"><i class="icon-user icons"></i></a>
+                            @endguest
                         </div>
                         <div class="header-cart same-style">
                             <button class="icon-cart">
