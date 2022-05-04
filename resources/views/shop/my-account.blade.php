@@ -150,11 +150,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title"><span>4</span> <a href="{{ route('wishlist') }}">Modify your wish list   </a></h5>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

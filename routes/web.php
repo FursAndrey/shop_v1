@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,60 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class, 'indexPage'])->name('ind_1');
 
-Route::get('/shop', function () {
-    return view('shop/index');
-})->name('ind_1');
+Route::get('/ind-2', [PagesController::class, 'indexPage2'])->name('ind_2');
+Route::get('/shop-list/{category?}', [PagesController::class, 'shop_list'])->name('shop_list');
+Route::get('/about-us', [PagesController::class, 'about_us'])->name('about_us');
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::get('/product-details/{product_id}', [PagesController::class, 'product_details'])->name('product_details');
+Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_account');
 
-Route::get('/shop/i2', function () {
-    return view('shop/index-2');
-})->name('ind_2');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
+Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
+Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
+Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
+Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
 
-Route::get('/shop/shop-page', function () {
-    return view('shop/shop-page');
-})->name('shop_page');
-
-Route::get('/shop/shop-list', function () {
-    return view('shop/shop-list');
-})->name('shop_list');
-
-Route::get('/shop/about-us', function () {
-    return view('shop/about-us');
-})->name('about_us');
-
-Route::get('/shop/contact', function () {
-    return view('shop/contact');
-})->name('contact');
-
-Route::get('/shop/product-details', function () {
-    return view('shop/product-details');
-})->name('product_details');
-
-Route::get('/shop/cart', function () {
-    return view('shop/cart');
-})->name('cart');
-
-Route::get('/shop/checkout', function () {
-    return view('shop/checkout');
-})->name('checkout');
-
-Route::get('/shop/wishlist', function () {
-    return view('shop/wishlist');
-})->name('wishlist');
-
-Route::get('/shop/my-account', function () {
-    return view('shop/my-account');
-})->name('my_account');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth'])->name('show_order');
 
 require __DIR__.'/auth.php';
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
