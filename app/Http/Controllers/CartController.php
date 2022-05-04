@@ -16,11 +16,28 @@ class CartController extends Controller
         $banner = Product::inRandomOrder()->limit(1)->get()[0];        
 
         return view(
-            'shop/wishlist',
+            'shop/cart',
             [
                 'categories' => $categories,
                 'banner' => $banner,
                 'order' => $order,
+            ]
+        );
+    }
+
+    public function show_order()
+    {
+        $categories = Category::select('name')->get();
+        $banner = Product::inRandomOrder()->limit(1)->get()[0];        
+        $orders = Order::orderBy('id', 'desc')->paginate(5);
+
+        return view(
+            'shop/show_order',
+            [
+                'categories' => $categories,
+                'banner' => $banner,
+                'orders' => $orders,
+                'order' => [],
             ]
         );
     }
@@ -76,6 +93,43 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
+    public function remove_this_product(int $product_id)
+    {
+        $orderId = session('orderId');
+        if (is_null($orderId)) {
+            return redirect()->route('cart');
+        } else {
+            $order = Order::find($orderId);
+            
+            if ($order->products->contains($product_id)) {
+                $order->products()->detach($product_id);
+            }
+        }
+        $product = Product::find($product_id);
+        session()->flash('warning', 'Удален товар '.$product->full_name);
+
+        return redirect()->route('cart');
+    }
+
+    public function clear_cart()
+    {
+        $orderId = session('orderId');
+        if (is_null($orderId)) {
+            return redirect()->route('cart');
+        } else {
+            $order = Order::find($orderId);
+
+            foreach ($order->products as $product) {
+                $order->products()->detach($product->id);
+            }
+            $order->delete();
+            session()->forget('orderId');
+        }
+        session()->flash('warning', 'Заказ удален');
+
+        return redirect()->route('cart');
+    }
+
     public function confirm_order(Request $request)
     {
         $orderId = session('orderId');
@@ -90,7 +144,6 @@ class CartController extends Controller
         } else {
             session()->flash('error', 'Что-то пошло не так');
         }
-        
 
         return redirect(route('ind_1'));
     }

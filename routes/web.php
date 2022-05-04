@@ -28,11 +28,11 @@ Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_acco
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
 Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
-Route::post('/order', [CartController::class, 'confirm_order'])->name('confirm_order');
+Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
+Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
+Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth'])->name('show_order');
 
 require __DIR__.'/auth.php';
 
