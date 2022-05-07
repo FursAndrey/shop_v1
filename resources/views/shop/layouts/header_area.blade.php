@@ -96,6 +96,7 @@
                                 </li>
                                 <li><a href="{{ route('about_us') }}">ABOUT</a></li>
                                 <li><a href="{{ route('contact') }}">contact us</a></li>
+                                <li><a href="{{ route('show_order') }}">show orders</a></li>
                             </ul>
                         </nav>
                     </div>
