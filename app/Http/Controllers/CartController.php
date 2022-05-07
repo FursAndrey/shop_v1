@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -59,6 +60,12 @@ class CartController extends Controller
         } else {
             //если товара в корзине нет - добавить
             $order->products()->attach($product_id);
+        }
+
+        if (Auth::check()) {
+            //если пользователь авторизован - добавляем его в заказ
+            $order->user_id = Auth::id();
+            $order->save();
         }
 
         $product = Product::find($product_id);
