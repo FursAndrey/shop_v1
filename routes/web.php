@@ -32,7 +32,7 @@ Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove
 Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
 Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
 
-Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth'])->name('show_order');
+Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth', 'is_admin'])->name('show_order');
 
 require __DIR__.'/auth.php';
 
