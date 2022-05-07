@@ -29,7 +29,7 @@ class CartController extends Controller
     {
         $categories = Category::select('name')->get();
         $banner = Product::inRandomOrder()->limit(1)->get()[0];        
-        $orders = Order::orderBy('id', 'desc')->paginate(5);
+        $orders = Order::orderBy('id', 'desc')->paginate(10);
 
         return view(
             'shop/show_order',
