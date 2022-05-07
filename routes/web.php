@@ -25,14 +25,20 @@ Route::get('/product-details/{product_id}', [PagesController::class, 'product_de
 Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
 Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_account');
 
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
-Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
-Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
-Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
-Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
+Route::group(
+    ['middleware' => 'cartCheck'],
+    function () {
+        Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+        Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
+        Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
+        Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
+        Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
+    }
+);
 
-Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth', 'is_admin'])->name('show_order');
+Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
+
+Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth', 'isAdmin'])->name('show_order');
 
 require __DIR__.'/auth.php';
 
