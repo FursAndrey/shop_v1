@@ -20,12 +20,18 @@
             <form action="{{ route('confirm_order') }}" method="post">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
+                        @error('user_name')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                         <div class="billing-info">
-                            <label for="user_name">Last Name</label>
+                            <label for="user_name">Name <span style="color:red">*</span></label>
                             <input type="text" id="user_name" name="user_name">
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
+                        @error('description')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                         <div class="billing-info">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" cols="30" rows="5"></textarea>

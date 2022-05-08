@@ -11,7 +11,7 @@
     color: #036a03;
 }
 
-#flashes p.error {
+#flashes p.error, div.error {
     background-color: rgb(255, 185, 185);
     color: rgb(128, 0, 0);
 }
@@ -19,4 +19,11 @@
 #flashes p.warning {
     background-color: rgb(255, 237, 176);
     color: rgb(128, 105, 0);
+}
+
+div.error {
+    font-weight: bold;
+    padding: 10px 35px;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfirmOrderRequest;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -137,7 +138,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function confirm_order(Request $request)
+    public function confirm_order(ConfirmOrderRequest $request)
     {
         $orderId = session('orderId');
         if (is_null($orderId)) {
