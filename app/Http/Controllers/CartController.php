@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -29,7 +30,7 @@ class CartController extends Controller
     {
         $categories = Category::select('name')->get();
         $banner = Product::inRandomOrder()->limit(1)->get()[0];        
-        $orders = Order::orderBy('id', 'desc')->paginate(5);
+        $orders = Order::orderBy('id', 'desc')->paginate(10);
 
         return view(
             'shop/show_order',
@@ -59,6 +60,12 @@ class CartController extends Controller
         } else {
             //если товара в корзине нет - добавить
             $order->products()->attach($product_id);
+        }
+
+        if (Auth::check()) {
+            //если пользователь авторизован - добавляем его в заказ
+            $order->user_id = Auth::id();
+            $order->save();
         }
 
         $product = Product::find($product_id);
