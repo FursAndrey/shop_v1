@@ -121,6 +121,12 @@
                             @guest
                                 <a href="{{ route('register') }}"><i class="icon-user icons"></i></a>
                             @endguest
+                            @auth
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit">X</button>
+                                </form>
+                            @endauth
                         </div>
                         <div class="header-cart same-style">
                             <button class="icon-cart">
@@ -177,7 +183,7 @@
                     <div class="mobile-menu">
                         <nav id="mobile-menu-active">
                             <ul class="menu-overflow">
-                                <li><a href="#">HOME</a>
+                                <li><a href="{{ route('ind_1') }}">HOME</a>
                                     <ul>
                                         <li><a href="{{ route('ind_1') }}">home version 1</a></li>
                                         <li><a href="{{ route('ind_2') }}">home version 2</a></li>
