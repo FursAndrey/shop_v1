@@ -42,6 +42,17 @@
                                     <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
+                                                <div class="labels">
+                                                    @if ($product->isNew())
+                                                        <span class="succes">Новинка</span>
+                                                    @endif
+                                                    @if ($product->isHit())
+                                                        <span class="danger">Хит продаж</span>
+                                                    @endif
+                                                    @if ($product->isRecomended())
+                                                        <span class="warning">Рекомендуемое</span>
+                                                    @endif
+                                                </div>
                                                 <a href="{{ route('product_details', $product->id) }}">
                                                     <img src="{{ asset($product->ImgForView) }}" style="width:270px; height:265px" alt="">
                                                 </a>

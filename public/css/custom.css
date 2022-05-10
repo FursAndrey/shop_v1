@@ -35,3 +35,29 @@ div.error {
     border-radius: 15px;
     margin: -10px;
 }
+
+div.labels {
+    position: absolute;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.labels span {
+    display: block;
+    border-radius: 10px;
+    padding: 2px 10px;
+    margin-bottom: 5px;
+}
+
+div.labels span.succes {
+    background-color: rgb(180 255 186);
+    color: #036a03;
+}
+div.labels span.danger {
+    background-color: rgb(255, 185, 185);
+    color: rgb(128, 0, 0);
+}
+div.labels span.warning {
+    background-color: rgb(255, 237, 176);
+    color: rgb(128, 105, 0);
+}

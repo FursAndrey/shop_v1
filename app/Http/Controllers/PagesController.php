@@ -48,7 +48,7 @@ class PagesController extends Controller
             $categoryID = Category::select('id')->where('code', '=', "$category")->get()[0]['id'];
             $products = Product::where('category_id', '=', $categoryID)->paginate(9);
         } else {
-            $products = Product::select('id', 'short_name', 'img', 'price', 'description')->paginate(9);
+            $products = Product::select('id', 'short_name', 'img', 'price', 'description', 'hit', 'new', 'recomended')->paginate(9);
         }
         return view(
             'shop/shop-list',

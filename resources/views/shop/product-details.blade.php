@@ -18,6 +18,17 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-img">
+                        <div class="labels">
+                            @if ($product->isNew())
+                                <span class="succes">Новинка</span>
+                            @endif
+                            @if ($product->isHit())
+                                <span class="danger">Хит продаж</span>
+                            @endif
+                            @if ($product->isRecomended())
+                                <span class="warning">Рекомендуемое</span>
+                            @endif
+                        </div>
                         <img id="zoompro" src="{{ asset($product->ImgForView) }}" data-zoom-image="{{ asset($product->ImgForView) }}" alt="zoom"/>
                     </div>
                 </div>
