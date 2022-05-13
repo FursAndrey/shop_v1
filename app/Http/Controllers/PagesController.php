@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -39,21 +40,39 @@ class PagesController extends Controller
         );
     }
 
-    public function shop_list($category = null)
+    public function shop_list(ProductFilterRequest $request, $category = null)
     {
         $categories = Category::select('name', 'code')->get();
         $order = CartController::getOrder();
         $banner = Product::inRandomOrder()->limit(1)->get()[0];
+
+        $productsQuery = Product::query();
         if (!is_null($category)) {
             $categoryID = Category::select('id')->where('code', '=', "$category")->get()[0]['id'];
-            $products = Product::where('category_id', '=', $categoryID)->paginate(9);
-        } else {
-            $products = Product::select('id', 'short_name', 'img', 'price', 'description', 'hit', 'new', 'recomended')->paginate(9);
+            $productsQuery->where('category_id', '=', $categoryID);
         }
+        if ($request->filled('min_price')) {
+            $productsQuery->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $productsQuery->where('price', '<=', $request->max_price);
+        }
+        if ($request->filled('hit')) {
+            $productsQuery->where('hit', '=', 1);
+        }
+        if ($request->filled('new')) {
+            $productsQuery->where('new', '=', 1);
+        }
+        if ($request->filled('recomended')) {
+            $productsQuery->where('recomended', '=', 1);
+        }
+        $products = $productsQuery->paginate(9)->withPath('?'.$request->getQueryString());
+        
         return view(
             'shop/shop-list',
             [
                 'categories' => $categories,
+                'this_category' => $category,
                 'products' => $products,
                 'banner' => $banner,
                 'order' => $order

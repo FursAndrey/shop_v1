@@ -61,3 +61,13 @@ div.labels span.warning {
     background-color: rgb(255, 237, 176);
     color: rgb(128, 105, 0);
 }
+
+/* bug fix */
+div#slider-range span{
+    display: none;
+}
+/* bug fix */
+div.ui-slider-range.ui-widget-header.ui-corner-all {
+    position: absolute;
+    height: 5px;
+}
