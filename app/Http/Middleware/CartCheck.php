@@ -24,7 +24,7 @@ class CartCheck
         }
 
         $order = Order::findOrFail($orderId);
-        if ($order->products->count() == 0) {
+        if ($order->products()->count() == 0) {
             session()->flash('warning', 'Корзина пуста');
             return redirect()->route('ind_1');
         }

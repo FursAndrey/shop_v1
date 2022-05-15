@@ -31,7 +31,7 @@ class Order extends Model
 
     public function getCountProductsAttribute()
     {
-        return count($this->products);
+        return $this->products()->count();
     }
 
     public function confirmOrder($user_name, $description)

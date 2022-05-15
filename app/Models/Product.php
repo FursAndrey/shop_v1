@@ -43,4 +43,24 @@ class Product extends Model
     {
         return ($this->recomended === '1')? 1: 0;
     }
+
+    public function scopeHit($query)
+    {
+        return $query->where('hit', 1);
+    }
+    public function scopeNew($query)
+    {
+        return $query->where('new', 1);
+    }
+    public function scopeRecomended($query)
+    {
+        return $query->where('recomended', 1);
+    }
+
+    public static function getRandomProduct()
+    {
+        $countProducts = self::count();
+        $randProd = random_int(1, $countProducts);
+        return self::limit(1)->offset($randProd)->get()[0];
+    }
 }
