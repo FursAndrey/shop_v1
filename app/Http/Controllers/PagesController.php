@@ -6,6 +6,7 @@ use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PagesController extends Controller
 {
@@ -42,6 +43,9 @@ class PagesController extends Controller
 
     public function shop_list(ProductFilterRequest $request, $category = null)
     {
+        //log example
+        Log::channel('single')->info($request->ip());
+
         $categories = Category::select('name', 'code')->get();
         $order = CartController::getOrder();
         $banner = Product::inRandomOrder()->limit(1)->get()[0];
