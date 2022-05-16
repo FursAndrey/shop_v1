@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'short_name',
@@ -61,6 +62,6 @@ class Product extends Model
     {
         $countProducts = self::count();
         $randProd = random_int(1, $countProducts);
-        return self::limit(1)->offset($randProd)->get()[0];
+        return self::limit(1)->offset($randProd)->withTrashed()->get()[0];
     }
 }

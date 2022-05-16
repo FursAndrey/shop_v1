@@ -32,7 +32,6 @@ class CartController extends Controller
         $categories = Category::select('name')->get();
         $banner = Product::getRandomProduct();        
         $orders = Order::orderBy('id', 'desc')->paginate(10);
-
         return view(
             'shop/show_order',
             [
