@@ -14,7 +14,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name', 'code')->get();
         $order = CartController::getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
 
         return view(
             'shop/index',
@@ -30,7 +30,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name', 'code')->get();
         $order = CartController::getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -67,7 +67,7 @@ class PagesController extends Controller
             }
         }
         $products = $productsQuery->paginate(9)->withPath('?'.$request->getQueryString());
-        
+
         return view(
             'shop/shop-list',
             [

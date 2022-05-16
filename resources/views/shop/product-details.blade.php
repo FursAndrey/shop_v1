@@ -63,13 +63,17 @@
                         </div>
                         <div class="product-list-action">
                             <div class="product-list-action-left">
-                                <form action="{{ route('add_product', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="addtocart-btn" title="Add to cart">
-                                        <i class="ion-bag"></i>
-                                        Add to cart
-                                    </button>
-                                </form>
+                                @if ($product->count > 0)
+                                    <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="addtocart-btn" title="Add to cart">
+                                            <i class="ion-bag"></i>
+                                            Add to cart
+                                        </button>
+                                    </form>
+                                @else
+                                    <span>Нет на складе</span>
+                                @endif
                             </div>
                             <div class="product-list-action-right">&nbsp;</div>
                         </div>
