@@ -60,13 +60,17 @@
                                                     <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                                         <i class="ti-plus"></i>
                                                     </a>
-                                                    <form action="{{ route('add_product', $product->id) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" title="Add to cart">
-                                                            <i class="ti-shopping-cart"></i>
-                                                            Add to cart
-                                                        </button>
-                                                    </form>
+                                                    @if ($product->count > 0)
+                                                        <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" title="Add to cart">
+                                                                <i class="ti-shopping-cart"></i>
+                                                                Add to cart
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <span>Нет на складе</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="product-content">
