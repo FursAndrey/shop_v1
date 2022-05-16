@@ -68,11 +68,6 @@
                                                         </button>
                                                     </form>
                                                 </div>
-                                                <div class="product-action-wishlist">
-                                                    <a title="Wishlist" href="#">
-                                                        <i class="ti-heart"></i>
-                                                    </a>
-                                                </div>
                                             </div>
                                             <div class="product-content">
                                                 <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
@@ -81,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-list-content">
-                                                <h4><a href="#">{{ $product->short_name }}</a></h4>
+                                                <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
                                                 <div class="product-price">
                                                     <span class="new">${{ $product->price }}</span>
                                                 </div>
