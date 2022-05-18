@@ -76,24 +76,20 @@ class CartController extends Controller
     
     public function remove_product(int $product_id)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            return redirect()->route('cart');
-        } else {
-            $order = Order::find($orderId);
-            
-            if ($order->products->contains($product_id)) {
-                $pivotRow = $order->products()->where('product_id', $product_id)->first()->pivot;
-                if ($pivotRow->count < 2) {
-                    //если товар в корзине 1 шт - удаляем
-                    $order->products()->detach($product_id);
-                } else {
-                    //если товар в корзине больше 1 шт - уменьшаем количество
-                    $pivotRow->count--;
-                    $pivotRow->update();
-                }
+        $order = self::getOrder();
+        
+        if ($order->products->contains($product_id)) {
+            $pivotRow = $order->products()->where('product_id', $product_id)->first()->pivot;
+            if ($pivotRow->count < 2) {
+                //если товар в корзине 1 шт - удаляем
+                $order->products()->detach($product_id);
+            } else {
+                //если товар в корзине больше 1 шт - уменьшаем количество
+                $pivotRow->count--;
+                $pivotRow->update();
             }
         }
+
         $product = Product::find($product_id);
         session()->flash('warning', 'Удален товар '.$product->full_name);
 
@@ -102,16 +98,12 @@ class CartController extends Controller
 
     public function remove_this_product(int $product_id)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            return redirect()->route('cart');
-        } else {
-            $order = Order::find($orderId);
-            
-            if ($order->products->contains($product_id)) {
-                $order->products()->detach($product_id);
-            }
+        $order = self::getOrder();
+        
+        if ($order->products->contains($product_id)) {
+            $order->products()->detach($product_id);
         }
+
         $product = Product::find($product_id);
         session()->flash('warning', 'Удален товар '.$product->full_name);
 
@@ -120,18 +112,14 @@ class CartController extends Controller
 
     public function clear_cart()
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            return redirect()->route('cart');
-        } else {
-            $order = Order::find($orderId);
+        $order = self::getOrder();
 
-            foreach ($order->products as $product) {
-                $order->products()->detach($product->id);
-            }
-            $order->delete();
-            session()->forget('orderId');
+        foreach ($order->products as $product) {
+            $order->products()->detach($product->id);
         }
+        $order->delete();
+        session()->forget('orderId');
+        
         session()->flash('warning', 'Заказ удален');
 
         return redirect()->route('cart');
@@ -139,11 +127,8 @@ class CartController extends Controller
 
     public function confirm_order(ConfirmOrderRequest $request)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            return redirect(route('ind_1'));
-        }
-        $order = Order::find($orderId);
+        $order = self::getOrder();
+
         $succes = $order->confirmOrder($request->user_name, $request->description);
 
         if ($succes) {
@@ -159,7 +144,7 @@ class CartController extends Controller
     {
         $orderId = session('orderId');
         if (!is_null($orderId)) {
-            $order = Order::find($orderId);
+            $order = Order::findOrFail($orderId);
         } else {
             $order = [];
         }
