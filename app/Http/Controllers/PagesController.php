@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\My\Basket;
 use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -13,7 +14,7 @@ class PagesController extends Controller
     public function indexPage()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket())->getOrder();
         $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
 
         return view(
@@ -29,7 +30,7 @@ class PagesController extends Controller
     public function indexPage2()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
         return view(
             'shop/index-2',
@@ -47,7 +48,7 @@ class PagesController extends Controller
         Log::channel('single')->info($request->ip());
 
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
 
         $productsQuery = Product::query();
@@ -83,7 +84,7 @@ class PagesController extends Controller
     public function about_us()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
             'shop/about-us',
@@ -98,7 +99,7 @@ class PagesController extends Controller
     public function contact()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
             'shop/contact',
@@ -114,7 +115,7 @@ class PagesController extends Controller
     {
         $product = Product::findOrFail($product_id);
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
             'shop/product-details',
@@ -130,7 +131,7 @@ class PagesController extends Controller
     public function checkout()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
             'shop/checkout',
@@ -145,7 +146,7 @@ class PagesController extends Controller
     public function my_account()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
+        $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
             'shop/my-account',

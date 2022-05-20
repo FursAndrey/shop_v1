@@ -7,17 +7,6 @@
                         <p>Default welcome msg! </p>
                     </div>
                 </div>
-                <div id="flashes">
-                    @if (session()->has('succes'))
-                        <p class="succes">{{ session()->get('succes') }}</p>
-                    @endif
-                    @if (session()->has('error'))
-                        <p class="error">{{ session()->get('error') }}</p>
-                    @endif
-                    @if (session()->has('warning'))
-                        <p class="warning">{{ session()->get('warning') }}</p>
-                    @endif
-                </div>
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="account-curr-lang-wrap f-right">
                         <ul>
@@ -240,3 +229,14 @@
         </div>
     </div>
 </header>
+<div id="flashes">
+    @if (session()->has('succes'))
+        <p class="succes">{{ session()->get('succes') }}</p>
+    @endif
+    @if (session()->has('error'))
+        <p class="error">{{ session()->get('error') }}</p>
+    @endif
+    @if (session()->has('warning'))
+        <p class="warning">{{ session()->get('warning') }}</p>
+    @endif
+</div>
