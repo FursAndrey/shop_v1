@@ -86,7 +86,7 @@ class CartController extends Controller
     public function confirm_order(ConfirmOrderRequest $request)
     {
         $basket = new Basket;
-        $succes = $basket->getOrder()->confirmOrder($request->user_name, $request->description);
+        $succes = $basket->confirmOrder($request->user_name, $request->description);
         
         if ($basket->countAvailable() == false) {
             session()->flash('error', 'Товар не доступен для заказа в полном объеме');

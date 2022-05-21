@@ -10,7 +10,7 @@ class Basket
 {
     protected $order;
 
-    public function __construct($create = false)
+    public function __construct(bool $create = false)
     {
         $orderId = session('orderId');
         if (is_null($orderId) && $create) {
@@ -86,15 +86,31 @@ class Basket
         }
     }
 
-    public function countAvailable()
+    public function countAvailable(bool $updateCount = false)
     {
         foreach ($this->order->products AS $product) {
             //если заказанное кол-во товара превышает то что на складе - не подтверждать заказ
             if ($this->getPivotRow($product->id)->count > $product->count) {
                 return false;
             }
+
+            if ($updateCount) {
+                $product->count -= $this->getPivotRow($product->id)->count;
+            }
+        }
+
+        if ($updateCount) {
+            $this->order->products->map->save();
         }
         return true;
+    }
+
+    public function confirmOrder(string $user_name, string $description)
+    {
+        if ($this->countAvailable(true) == false) {
+            return false;
+        }
+        return $this->order->confirmOrder($user_name, $description);
     }
 
     protected function getPivotRow(int $product_id)
