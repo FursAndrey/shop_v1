@@ -2,9 +2,11 @@
 
 namespace App\Http\My;
 
+use App\Mail\OrderConfirm;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class Basket
 {
@@ -105,11 +107,14 @@ class Basket
         return true;
     }
 
-    public function confirmOrder(string $user_name, string $description)
+    public function confirmOrder(string $user_name, ?string $email, ?string $description)
     {
         if ($this->countAvailable(true) == false) {
             return false;
         }
+
+        Mail::to($email)->send(new OrderConfirm($user_name, $this->getOrder()));
+
         return $this->order->confirmOrder($user_name, $description);
     }
 

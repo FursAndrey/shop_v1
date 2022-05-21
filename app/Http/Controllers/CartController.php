@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -86,7 +87,8 @@ class CartController extends Controller
     public function confirm_order(ConfirmOrderRequest $request)
     {
         $basket = new Basket;
-        $succes = $basket->confirmOrder($request->user_name, $request->description);
+        $email = Auth::check() ? Auth::user()->email : $request->email;
+        $succes = $basket->confirmOrder($request->user_name, $email, $request->description);
         
         if ($basket->countAvailable() == false) {
             session()->flash('error', 'Товар не доступен для заказа в полном объеме');
