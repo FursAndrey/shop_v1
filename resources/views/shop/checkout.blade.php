@@ -28,15 +28,17 @@
                             <input type="text" id="user_name" name="user_name">
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12">
-                        @error('email')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                        <div class="billing-info">
-                            <label for="email">Your email <span style="color:red">*</span></label>
-                            <input type="text" id="email" name="email">
+                    @guest
+                        <div class="col-lg-12 col-md-12">
+                            @error('email')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                            <div class="billing-info">
+                                <label for="email">Your email <span style="color:red">*</span></label>
+                                <input type="text" id="email" name="email">
+                            </div>
                         </div>
-                    </div>
+                    @endguest
                     <div class="col-lg-12 col-md-12">
                         @error('description')
                             <div class="error">{{ $message }}</div>

@@ -25,7 +25,7 @@ class ConfirmOrderRequest extends FormRequest
     {
         return [
             'user_name' => 'required|min:3|max:200',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             'description' => 'max:200',
         ];
     }
