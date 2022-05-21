@@ -18,6 +18,17 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-img">
+                        <div class="labels">
+                            @if ($product->isNew())
+                                <span class="succes">Новинка</span>
+                            @endif
+                            @if ($product->isHit())
+                                <span class="danger">Хит продаж</span>
+                            @endif
+                            @if ($product->isRecomended())
+                                <span class="warning">Рекомендуемое</span>
+                            @endif
+                        </div>
                         <img id="zoompro" src="{{ asset($product->ImgForView) }}" data-zoom-image="{{ asset($product->ImgForView) }}" alt="zoom"/>
                     </div>
                 </div>
@@ -52,13 +63,17 @@
                         </div>
                         <div class="product-list-action">
                             <div class="product-list-action-left">
-                                <form action="{{ route('add_product', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="addtocart-btn" title="Add to cart">
-                                        <i class="ion-bag"></i>
-                                        Add to cart
-                                    </button>
-                                </form>
+                                @if ($product->count > 0)
+                                    <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="addtocart-btn" title="Add to cart">
+                                            <i class="ion-bag"></i>
+                                            Add to cart
+                                        </button>
+                                    </form>
+                                @else
+                                    <span>Нет на складе</span>
+                                @endif
                             </div>
                             <div class="product-list-action-right">&nbsp;</div>
                         </div>

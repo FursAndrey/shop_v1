@@ -80,18 +80,22 @@
     --------------------- */
     var sliderrange = $('#slider-range');
     var amountprice = $('#amount');
+
+    var min_price = $('#min_price');
+    var max_price = $('#max_price');
     $(function() {
         sliderrange.slider({
             range: true,
             min: 0,
-            max: 1200,
-            values: [35, 540],
+            max: 120,
+            values: [5, 54],
             slide: function(event, ui) {
-                amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+                amountprice.text("$" + ui.values[0] + " - $" + ui.values[1]);
+                min_price.val(ui.values[0]);
+                max_price.val(ui.values[1]);
             }
         });
-        amountprice.val("$" + sliderrange.slider("values", 0) +
-            " - $" + sliderrange.slider("values", 1));
+        amountprice.text("$" + sliderrange.slider("values", 0) + " - $" + sliderrange.slider("values", 1));
     });
     
     /*---------------------

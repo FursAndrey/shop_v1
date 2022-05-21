@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\My\Basket;
+use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PagesController extends Controller
 {
     public function indexPage()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
+        $order = (new Basket())->getOrder();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
 
         return view(
             'shop/index',
@@ -27,8 +30,8 @@ class PagesController extends Controller
     public function indexPage2()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price')->limit(8)->get();
+        $order = (new Basket)->getOrder();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -39,21 +42,38 @@ class PagesController extends Controller
         );
     }
 
-    public function shop_list($category = null)
+    public function shop_list(ProductFilterRequest $request, $category = null)
     {
+        //log example
+        Log::channel('single')->info($request->ip());
+
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
+
+        $productsQuery = Product::query();
         if (!is_null($category)) {
             $categoryID = Category::select('id')->where('code', '=', "$category")->get()[0]['id'];
-            $products = Product::where('category_id', '=', $categoryID)->paginate(9);
-        } else {
-            $products = Product::select('id', 'short_name', 'img', 'price', 'description')->paginate(9);
+            $productsQuery->where('category_id', '=', $categoryID);
         }
+        if ($request->filled('min_price')) {
+            $productsQuery->where('price', '>=', $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $productsQuery->where('price', '<=', $request->max_price);
+        }
+        foreach (['hit', 'new', 'recomended'] as $field) {
+            if ($request->has($field)) {
+                $productsQuery->$field();
+            }
+        }
+        $products = $productsQuery->paginate(9)->withPath('?'.$request->getQueryString());
+
         return view(
             'shop/shop-list',
             [
                 'categories' => $categories,
+                'this_category' => $category,
                 'products' => $products,
                 'banner' => $banner,
                 'order' => $order
@@ -64,8 +84,8 @@ class PagesController extends Controller
     public function about_us()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
         return view(
             'shop/about-us',
             [
@@ -79,8 +99,8 @@ class PagesController extends Controller
     public function contact()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
         return view(
             'shop/contact',
             [
@@ -95,8 +115,8 @@ class PagesController extends Controller
     {
         $product = Product::findOrFail($product_id);
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
         return view(
             'shop/product-details',
             [
@@ -111,8 +131,8 @@ class PagesController extends Controller
     public function checkout()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
         return view(
             'shop/checkout',
             [
@@ -126,8 +146,8 @@ class PagesController extends Controller
     public function my_account()
     {
         $categories = Category::select('name', 'code')->get();
-        $order = CartController::getOrder();
-        $banner = Product::inRandomOrder()->limit(1)->get()[0];
+        $order = (new Basket)->getOrder();
+        $banner = Product::getRandomProduct();
         return view(
             'shop/my-account',
             [

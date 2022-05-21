@@ -13,6 +13,7 @@ class Order extends Model
         'status',
         'user_name',
         'description',
+        'user_id',
     ];
 
     public function products()
@@ -23,7 +24,7 @@ class Order extends Model
     public function getOrderSum()
     {
         $sum = 0;
-        foreach ($this->products as $product) {
+        foreach ($this->products()->withTrashed()->get() as $product) {
             $sum += $product->getPriceForCountAttribute();
         }
         return $sum;
@@ -31,7 +32,7 @@ class Order extends Model
 
     public function getCountProductsAttribute()
     {
-        return count($this->products);
+        return $this->products()->count();
     }
 
     public function confirmOrder($user_name, $description)

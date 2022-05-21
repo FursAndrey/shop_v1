@@ -42,6 +42,17 @@
                                     <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
+                                                <div class="labels">
+                                                    @if ($product->isNew())
+                                                        <span class="succes">Новинка</span>
+                                                    @endif
+                                                    @if ($product->isHit())
+                                                        <span class="danger">Хит продаж</span>
+                                                    @endif
+                                                    @if ($product->isRecomended())
+                                                        <span class="warning">Рекомендуемое</span>
+                                                    @endif
+                                                </div>
                                                 <a href="{{ route('product_details', $product->id) }}">
                                                     <img src="{{ asset($product->ImgForView) }}" style="width:270px; height:265px" alt="">
                                                 </a>
@@ -49,18 +60,17 @@
                                                     <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                                         <i class="ti-plus"></i>
                                                     </a>
-                                                    <form action="{{ route('add_product', $product->id) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" title="Add to cart">
-                                                            <i class="ti-shopping-cart"></i>
-                                                            Add to cart
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                <div class="product-action-wishlist">
-                                                    <a title="Wishlist" href="#">
-                                                        <i class="ti-heart"></i>
-                                                    </a>
+                                                    @if ($product->count > 0)
+                                                        <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" title="Add to cart">
+                                                                <i class="ti-shopping-cart"></i>
+                                                                Add to cart
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <span>Нет на складе</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="product-content">
@@ -70,20 +80,24 @@
                                                 </div>
                                             </div>
                                             <div class="product-list-content">
-                                                <h4><a href="#">{{ $product->short_name }}</a></h4>
+                                                <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
                                                 <div class="product-price">
                                                     <span class="new">${{ $product->price }}</span>
                                                 </div>
                                                 <p>{{ $product->description }}</p>
                                                 <div class="product-list-action">
                                                     <div class="product-list-action-left">
-                                                        <form action="{{ route('add_product', $product->id) }}" method="POST">
-                                                            @csrf
-                                                            <button type="submit" class="addtocart-btn" title="Add to cart">
-                                                                <i class="ion-bag"></i>
-                                                                Add to cart
-                                                            </button>
-                                                        </form>
+                                                        @if ($product->count > 0)
+                                                            <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="addtocart-btn" title="Add to cart">
+                                                                    <i class="ion-bag"></i>
+                                                                    Add to cart
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <span>Нет на складе</span>
+                                                        @endif
                                                     </div>
                                                     <div class="product-list-action-right">
                                                         <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
@@ -112,62 +126,46 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="shop-widget">
-                            <h4 class="shop-sidebar-title">Filter By Price</h4>
+                        <form method="GET" action="{{ route('shop_list', $this_category) }}">
+                            <div class="shop-widget">
+                                <h4 class="shop-sidebar-title">Filter By Price</h4>
                                 <div class="price_filter mt-25">
-                                <div id="slider-range"></div>
-                                <div class="price_slider_amount">
-                                    <div class="label-input">
-                                        <label>price : </label>
-                                        <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
+                                    <div id="slider-range"></div>
+                                    <div class="price_slider_amount">
+                                        <div class="label-input">
+                                            <label>price : </label>
+                                            <span id="amount"></span>
+                                            <input type="hidden" id="min_price" name="min_price">
+                                            <input type="hidden" id="max_price" name="max_price">
+                                        </div>
                                     </div>
-                                    <button type="button">Filter</button> 
                                 </div>
+                                @foreach (['hit' => 'Хит продаж', 'new' => 'Новинка', 'recomended' => 'Рекомендуемое'] as $code => $label)
+                                    <?
+                                    if (request()->has($code)) {
+                                        $checked = 'checked';
+                                    } else {
+                                        $checked = '';
+                                    }
+                                    ?>
+                                    <p>
+                                        <label for="{{ $code }}">
+                                            <input type="checkbox" id="{{ $code }}" name="{{ $code }}" style="width: 16px; height: 16px" {{ $checked }}>
+                                            <span style="margin: 0 14px;">{{ $label }}</span>
+                                        </label>
+                                    </p>
+                                @endforeach
+                                <button type="submit">Filter</button>
+                                <a href="{{ route('shop_list', $this_category) }}">Сбросить фильтр</a>
                             </div>
-                        </div>
+                        </form>
                         <div class="shop-widget mt-50">
-                            <h4 class="shop-sidebar-title">Food Category </h4>
+                            <h4 class="shop-sidebar-title">Category </h4>
                                 <div class="shop-list-style mt-20">
                                 <ul>
-                                    <li><a href="#">Canned Food</a></li>
-                                    <li><a href="#">Dry Food</a></li>
-                                    <li><a href="#">Food Pouches</a></li>
-                                    <li><a href="#">Food Toppers</a></li>
-                                    <li><a href="#">Fresh Food</a></li>
-                                    <li><a href="#">Frozen Food</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="shop-widget mt-50">
-                            <h4 class="shop-sidebar-title">Top Brands </h4>
-                                <div class="shop-list-style mt-20">
-                                <ul>
-                                    <li><a href="#">Authority</a></li>
-                                    <li><a href="#">AvoDerm Natural</a></li>
-                                    <li><a href="#">Bil-Jac</a></li>
-                                    <li><a href="#">Blue Buffalo</a></li>
-                                    <li><a href="#">Castor & Pollux</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="shop-widget mt-50">
-                            <h4 class="shop-sidebar-title">Health Consideration </h4>
-                                <div class="shop-list-style mt-20">
-                                <ul>
-                                    <li><a href="#">Bone Development <span>18</span></a></li>
-                                    <li><a href="#">Digestive Care <span>22</span></a></li>
-                                    <li><a href="#">General Health <span>19</span></a></li>
-                                    <li><a href="#">Hip & Joint  <span>41</span></a></li>
-                                    <li><a href="#">Immune System  <span>22</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="shop-widget mt-50">
-                            <h4 class="shop-sidebar-title">Nutritional Option </h4>
-                                <div class="shop-list-style mt-20">
-                                <ul>
-                                    <li><a href="#">Grain Free  <span>18</span></a></li>
-                                    <li><a href="#">Natural <span>22</span></a></li>
+                                    @foreach ($categories as $category)
+                                        <li><a href="{{ route('shop_list', $category->code) }}">{{ $category->name }}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

@@ -7,17 +7,6 @@
                         <p>Default welcome msg! </p>
                     </div>
                 </div>
-                <div id="flashes">
-                    @if (session()->has('succes'))
-                        <p class="succes">{{ session()->get('succes') }}</p>
-                    @endif
-                    @if (session()->has('error'))
-                        <p class="error">{{ session()->get('error') }}</p>
-                    @endif
-                    @if (session()->has('warning'))
-                        <p class="warning">{{ session()->get('warning') }}</p>
-                    @endif
-                </div>
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="account-curr-lang-wrap f-right">
                         <ul>
@@ -55,7 +44,8 @@
                     <div class="main-menu text-center">
                         <nav>
                             <ul>
-                                <li><a href="{{ route('ind_1') }}">HOME</a>
+                                <li @routeactive('ind_1') @routeactive('ind_2')>
+                                    <a href="{{ route('ind_1') }}">HOME</a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="{{ route('ind_1') }}">home version 1</a>
@@ -65,14 +55,15 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ route('shop_list') }}">Category</a>
+                                <li @routeactive('shop_list')>
+                                    <a href="{{ route('shop_list') }}">Category</a>
                                     <ul class="submenu">
                                         @foreach ($categories as $category)
                                             <li><a href="{{ route('shop_list', $category->code) }}">{{ $category->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="#">PAGES</a>
+                                <li><a>PAGES</a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="{{ route('about_us') }}">about us</a>
@@ -94,9 +85,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ route('about_us') }}">ABOUT</a></li>
-                                <li><a href="{{ route('contact') }}">contact us</a></li>
-                                <li><a href="{{ route('show_order') }}">show orders</a></li>
+                                <li @routeactive('about_us')>
+                                    <a href="{{ route('about_us') }}">ABOUT</a>
+                                </li>
+                                <li @routeactive('contact')>
+                                    <a href="{{ route('contact') }}">contact us</a>
+                                </li>
+                                @auth
+                                    <li @routeactive('show_order')>
+                                        <a href="{{ route('show_order') }}">show orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('voyager.dashboard') }}">Admin</a>
+                                    </li>
+                                @endauth
                             </ul>
                         </nav>
                     </div>
@@ -121,6 +123,12 @@
                             @guest
                                 <a href="{{ route('register') }}"><i class="icon-user icons"></i></a>
                             @endguest
+                            @auth
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit">X</button>
+                                </form>
+                            @endauth
                         </div>
                         <div class="header-cart same-style">
                             <button class="icon-cart">
@@ -177,7 +185,7 @@
                     <div class="mobile-menu">
                         <nav id="mobile-menu-active">
                             <ul class="menu-overflow">
-                                <li><a href="#">HOME</a>
+                                <li><a href="{{ route('ind_1') }}">HOME</a>
                                     <ul>
                                         <li><a href="{{ route('ind_1') }}">home version 1</a></li>
                                         <li><a href="{{ route('ind_2') }}">home version 2</a></li>
@@ -221,3 +229,14 @@
         </div>
     </div>
 </header>
+<div id="flashes">
+    @if (session()->has('succes'))
+        <p class="succes">{{ session()->get('succes') }}</p>
+    @endif
+    @if (session()->has('error'))
+        <p class="error">{{ session()->get('error') }}</p>
+    @endif
+    @if (session()->has('warning'))
+        <p class="warning">{{ session()->get('warning') }}</p>
+    @endif
+</div>
