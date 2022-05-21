@@ -105,7 +105,7 @@ class Basket
         return true;
     }
 
-    public function confirmOrder(string $user_name, string $description)
+    public function confirmOrder(string $user_name, ?string $description)
     {
         if ($this->countAvailable(true) == false) {
             return false;
