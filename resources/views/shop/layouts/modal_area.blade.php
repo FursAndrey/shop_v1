@@ -75,7 +75,7 @@
                             <div class="quickview-btn-cart">
                                 <form action="{{ route('add_product', 0) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn-style">Add to cart</button>
+                                    <button type="submit" class="btn-style">@lang('main.add_to_cart')</button>
                                 </form>
                             </div>
                             <div class="quickview-btn-wishlist">

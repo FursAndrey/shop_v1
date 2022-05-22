@@ -1,6 +1,6 @@
 @extends('../shop/layouts/main')
 
-@section('title') Marten - Pet Food eCommerce Bootstrap4 Template @endsection
+@section('title') @lang('main.favicon_title') @endsection
 
 @section('header_styles')
     @include('../shop/layouts/header_styles')

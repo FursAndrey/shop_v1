@@ -1,6 +1,6 @@
 @extends('../shop/layouts/main')
 
-@section('title') Marten - Pet Food eCommerce Bootstrap4 Template @endsection
+@section('title') @lang('main.favicon_title') @endsection
 
 @section('header_styles')
     @include('../shop/layouts/header_styles_2')
@@ -16,18 +16,18 @@
         <!-- shopping-cart-area start -->
     <div class="cart-main-area pt-95 pb-100">
         <div class="container">
-            <h3 class="page-title">Orders</h3>
+            <h3 class="page-title">@lang('order.orders')</h3>
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="table-content table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>status</th>
-                                <th>User Name</th>
-                                <th>Describtion</th>
-                                <th>Price</th>
-                                <th>Created at</th>
+                                <th>@lang('order.id')</th>
+                                <th>@lang('order.status')</th>
+                                <th>@lang('order.user_name')</th>
+                                <th>@lang('order.describtion')</th>
+                                <th>@lang('order.price')</th>
+                                <th>@lang('order.created_at')</th>
                             </tr>
                         </thead>
                         <tbody>

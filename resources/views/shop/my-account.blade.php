@@ -1,6 +1,6 @@
 @extends('../shop/layouts/main')
 
-@section('title') Marten - Pet Food eCommerce Bootstrap4 Template @endsection
+@section('title') @lang('main.favicon_title') @endsection
 
 @section('header_styles')
     @include('../shop/layouts/header_styles_2')
@@ -9,7 +9,7 @@
 @section('content')
     @include('../shop/layouts/header_area')
     @php
-        $this_page = 'My Account';
+        $this_page = 'My Account(может добалю)';
     @endphp
     @include('../shop/layouts/breadcrumb_area')
 

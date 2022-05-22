@@ -7,6 +7,7 @@ use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 class PagesController extends Controller
@@ -15,7 +16,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name', 'code')->get();
         $order = (new Basket())->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
 
         return view(
             'shop/index',
@@ -31,7 +32,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name', 'code')->get();
         $order = (new Basket)->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
+        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -156,5 +157,12 @@ class PagesController extends Controller
                 'order' => $order
             ]
         );
+    }
+
+    public function changeLocale($locale)
+    {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+        return redirect()->back();
     }
 }

@@ -1,8 +1,7 @@
 <div class="product-area pt-95 pb-70 gray-bg">
     <div class="container">
         <div class="section-title text-center mb-55">
-            <h4>Most Populer</h4>
-            <h2>Recent Products</h2>
+            <h4>@lang('main.hit')</h4>
         </div>
         <div class="row">
             @foreach ($products as $product)
@@ -19,12 +18,12 @@
                                 @if ($product->count > 0)
                                     <form action="{{ route('add_product', $product->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="addtocart-btn" title="Add to cart">
+                                        <button type="submit" class="addtocart-btn" title="@lang('main.add_to_cart')">
                                             <i class="ti-shopping-cart"></i>
                                         </button>
                                     </form>
                                 @else
-                                    <span>Нет на складе</span>
+                                    <span>@lang('main.not_in_stock')</span>
                                 @endif
                             </div>
                             <div class="product-action-wishlist">

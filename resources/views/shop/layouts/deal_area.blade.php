@@ -1,4 +1,4 @@
-<div class="deal-area bg-img pt-95 pb-100">
+<div class="deal-area bg-img pt-95 pb-100">(может добалю)
     <div class="container">
         <div class="section-title text-center mb-50">
             <h4>Best Product</h4>
@@ -22,7 +22,7 @@
                         <div data-countdown="2017/10/01"></div>
                     </div>
                     <div class="discount-btn mt-35">
-                        <a class="btn-style" href="#">SHOP NOW</a>
+                        <a class="btn-style" href="#">@lang('main.learn_more')</a>
                     </div>
                 </div>
             </div>

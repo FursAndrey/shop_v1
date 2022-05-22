@@ -1,4 +1,4 @@
-<div class="testimonial-area pt-90 pb-70">
+<div class="testimonial-area pt-90 pb-70">(может добалю)
     <div class="container">
         <div class="row">
             <div class="col-lg-10 ml-auto mr-auto">
