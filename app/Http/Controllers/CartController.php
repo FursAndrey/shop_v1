@@ -13,7 +13,7 @@ class CartController extends Controller
 {
     public function cart()
     {
-        $categories = Category::select('name')->get();
+        $categories = Category::select('name_ru', 'name_en')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
 
@@ -29,7 +29,7 @@ class CartController extends Controller
 
     public function show_order()
     {
-        $categories = Category::select('name')->get();
+        $categories = Category::select('name_ru', 'name_en')->get();
         $banner = Product::getRandomProduct();        
         $orders = Order::orderBy('id', 'desc')->paginate(10);
         return view(

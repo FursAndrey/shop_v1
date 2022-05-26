@@ -14,7 +14,7 @@ class PagesController extends Controller
 {
     public function indexPage()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket())->getOrder();
         $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
 
@@ -30,7 +30,7 @@ class PagesController extends Controller
 
     public function indexPage2()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
         return view(
@@ -48,7 +48,7 @@ class PagesController extends Controller
         //log example
         Log::channel('single')->info($request->ip());
 
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
 
@@ -84,7 +84,7 @@ class PagesController extends Controller
 
     public function about_us()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -99,7 +99,7 @@ class PagesController extends Controller
 
     public function contact()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -115,7 +115,7 @@ class PagesController extends Controller
     public function product_details(int $product_id)
     {
         $product = Product::findOrFail($product_id);
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -131,7 +131,7 @@ class PagesController extends Controller
 
     public function checkout()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -146,7 +146,7 @@ class PagesController extends Controller
 
     public function my_account()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
