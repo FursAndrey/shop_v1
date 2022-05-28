@@ -39,7 +39,7 @@
                                                 <img src="{{ asset("$product->imgForView") }}" alt="" style="width: 240px;">
                                             </td>
                                             <td class="product-name">{{ $product->full_name }}</td>
-                                            <td class="product-price-cart"><span class="amount">${{ $product->price }}</span></td>
+                                            <td class="product-price-cart"><span class="amount">{{ $product->price }} {{ $product->curCode }}</span></td>
                                             <td class="product-quantity">
                                                 <form action="{{ route('add_product', $product->id) }}" method="POST">
                                                     @csrf
@@ -51,7 +51,7 @@
                                                     <button type="submit" class="addtocart-btn" title="Remove from cart">-</button>
                                                 </form>
                                             </td>
-                                            <td class="product-subtotal">${{ $product->PriceForCount }}</td>
+                                            <td class="product-subtotal">{{ $product->PriceForCount }} {{ $product->curCode }}</td>
                                             <td class="product-remove">
                                                 <form action="{{ route('remove_this_product', $product->id) }}" method="POST">
                                                     @csrf
@@ -68,7 +68,7 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 @if($order != [])
-                                    <h5>@lang('header.basket.total'): ${{ $order->getOrderSum() }}</h5>
+                                    <h5>@lang('header.basket.total'): {{ $order->getOrderSum() }} {{ $product->curCode }}</h5>
                                 @endif
                                 <div class="cart-shiping-update">
                                     <a href="{{ route('checkout') }}">@lang('header.menu.checkout')</a>

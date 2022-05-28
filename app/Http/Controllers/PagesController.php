@@ -16,7 +16,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket())->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
+        $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
 
         return view(
             'shop/index',
@@ -32,7 +32,7 @@ class PagesController extends Controller
     {
         $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->hit()->limit(8)->get();
+        $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -163,6 +163,12 @@ class PagesController extends Controller
     {
         session(['locale' => $locale]);
         App::setLocale($locale);
+        return redirect()->back();
+    }
+    
+    public function changeCurrency($currencyCode)
+    {
+        session(['currency' => $currencyCode]);
         return redirect()->back();
     }
 }

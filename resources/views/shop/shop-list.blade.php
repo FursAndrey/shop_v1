@@ -56,13 +56,13 @@
                                             <div class="product-content">
                                                 <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
                                                 <div class="product-price">
-                                                    <span class="new">${{ $product->price }}</span>
+                                                    <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
                                                 </div>
                                             </div>
                                             <div class="product-list-content">
                                                 <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
                                                 <div class="product-price">
-                                                    <span class="new">${{ $product->price }}</span>
+                                                    <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
                                                 </div>
                                                 <p>{{ $product->description }}</p>
                                                 <div class="product-list-action">

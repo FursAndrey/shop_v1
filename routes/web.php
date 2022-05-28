@@ -28,6 +28,7 @@ Route::group(
         Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_account');
         
         Route::get('/changeLocale/{locale}', [PagesController::class, 'changeLocale'])->name('changeLocale');
+        Route::get('/changeCurrency/{currencyCode}', [PagesController::class, 'changeCurrency'])->name('changeCurrency');
         
         Route::group(
             ['middleware' => 'cartCheck'],

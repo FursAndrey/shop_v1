@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\dbTranslate;
+use App\Services\Conversion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -85,5 +86,15 @@ class Product extends Model
         $countProducts = self::count();
         $randProd = random_int(1, $countProducts);
         return self::limit(1)->offset($randProd)->withTrashed()->get()[0];
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return Conversion::convert($value);
+    }
+
+    public function getCurCodeAttribute()
+    {
+        return Conversion::getCurCode();
     }
 }

@@ -38,7 +38,7 @@
                                         <td class="product-name">{{ $order->status }}</td>
                                         <td class="product-name">{{ $order->user_name }}</td>
                                         <td class="product-name">{{ $order->description }}</td>
-                                        <td class="product-price-cart"><span class="amount">${{ $order->getOrderSum() }}</span></td>
+                                        <td class="product-price-cart"><span class="amount">{{ $order->getOrderSum() }} {{ App\Services\Conversion::getCurCode() }}</span></td>
                                         <td class="product-name">{{ $order->created_at->format('d-m-Y H:i') }}</td>
                                     </tr>
                                 @endforeach

@@ -10,12 +10,11 @@
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="account-curr-lang-wrap f-right">
                         <ul>
-                            <li class="top-hover"><a href="#">$Doller (US) <i class="icon-arrow-down"></i></a>
+                            <li class="top-hover"><a href="#">{{ session('currency', 'BYN') }}<i class="icon-arrow-down"></i></a>
                                 <ul>
-                                    <li><a href="#">Taka (BDT)</a></li>
-                                    <li><a href="#">Riyal (SAR)</a></li>
-                                    <li><a href="#">Rupee (INR)</a></li>
-                                    <li><a href="#">Dirham (AED)</a></li>
+                                    @foreach (App\Services\Conversion::getCurrencies() as $currency)
+                                        <li><a href="{{ route('changeCurrency', $currency->code) }}">{{ $currency->code }}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="top-hover"><a href="#">@lang('header.set_locale') () <i class="icon-arrow-down"></i></a>
@@ -138,7 +137,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">{{ $product->full_name }}</a></h4>
                                                     <h6>@lang('header.basket.qty'): {{ $product->pivot->count }}</h6>
-                                                    <span>${{ $product->PriceForCount }}</span>
+                                                    <span>{{ $product->PriceForCount }} {{ App\Services\Conversion::getCurCode() }}</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <form action="{{ route('remove_product', $product->id) }}" method="POST">
@@ -153,9 +152,9 @@
                                 <div class="shopping-cart-total">
                                     <h4>
                                         @if ($order != [])
-                                            @lang('header.basket.total') : <span class="shop-total">${{ $order->getOrderSum() }}</span>
+                                            @lang('header.basket.total') : <span class="shop-total">{{ $order->getOrderSum() }} {{ App\Services\Conversion::getCurCode() }}</span>
                                         @else
-                                            @lang('header.basket.total') : <span class="shop-total">$0</span>
+                                            @lang('header.basket.total') : <span class="shop-total">0 {{ App\Services\Conversion::getCurCode() }}</span>
                                         @endif
                                     </h4>
                                 </div>

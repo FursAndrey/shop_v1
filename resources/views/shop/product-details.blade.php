@@ -38,7 +38,7 @@
                             {{ $product->short_name }}
                         </h2>
                         <div class="product-price">
-                            <span class="new">${{ $product->price }}</span>
+                            <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
                         </div>
                         @if($product->count > 0)
                             <div class="in-stock">
