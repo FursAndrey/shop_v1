@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Order;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
-class CartCheck
+class ChangeLocale
 {
     /**
      * Handle an incoming request.
@@ -17,18 +17,7 @@ class CartCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
-            session()->flash('warning', __('cartMiddle.not_exist_order'));
-            return redirect()->route('ind_1');
-        }
-
-        $order = Order::findOrFail($orderId);
-        if ($order->products()->count() == 0) {
-            session()->flash('warning', __('cartMiddle.empty_basket'));
-            return redirect()->route('ind_1');
-        }
-
+        App::setLocale(session('locale'));
         return $next($request);
     }
 }

@@ -1,4 +1,4 @@
-<div class="testimonial-area pt-90 pb-70 bg-img" style="background-image:url({{ asset('img/banner/banner-1.jpg') }});">
+<div class="testimonial-area pt-90 pb-70 bg-img" style="background-image:url({{ asset('img/banner/banner-1.jpg') }});">(может добалю)
     <div class="container">
         <div class="row">
             <div class="col-lg-10 ml-auto mr-auto">

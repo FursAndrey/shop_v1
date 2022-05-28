@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         // Category::factory(5)->create();
         // Product::factory(18)->create();
         // \App\Models\User::factory(10)->create();
+        // $this->call(CurrencySeeder::class);
     }
 }

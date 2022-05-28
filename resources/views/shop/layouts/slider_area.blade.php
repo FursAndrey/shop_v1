@@ -6,10 +6,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12 col-sm-7">
                             <div class="slider-content slider-animated-1 pt-114">
-                                <h3 class="animated">We keep pets for pleasure.</h3>
-                                <h1 class="animated">{{ $product->short_name }}<br>For all Pets</h1>
+                                <h3 class="animated">We keep pets for pleasure.(может добалю)</h3>
+                                <h1 class="animated">{{ $product->short_name }}</h1>
                                 <div class="slider-btn">
-                                    <a class="animated" href="{{ route('product_details', $product->id) }}">SHOP NOW</a>
+                                    <a class="animated" href="{{ route('product_details', $product->id) }}">@lang('main.learn_more')</a>
                                 </div>
                             </div>
                         </div>

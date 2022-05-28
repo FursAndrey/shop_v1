@@ -15,30 +15,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'indexPage'])->name('ind_1');
-
-Route::get('/ind-2', [PagesController::class, 'indexPage2'])->name('ind_2');
-Route::get('/shop-list/{category?}', [PagesController::class, 'shop_list'])->name('shop_list');
-Route::get('/about-us', [PagesController::class, 'about_us'])->name('about_us');
-Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
-Route::get('/product-details/{product_id}', [PagesController::class, 'product_details'])->name('product_details');
-Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
-Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_account');
-
 Route::group(
-    ['middleware' => 'cartCheck'],
+    ['middleware' => 'changeLocale'],
     function () {
-        Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-        Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
-        Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
-        Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
-        Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
+        Route::get('/', [PagesController::class, 'indexPage'])->name('ind_1');
+        
+        Route::get('/ind-2', [PagesController::class, 'indexPage2'])->name('ind_2');
+        Route::get('/shop-list/{category?}', [PagesController::class, 'shop_list'])->name('shop_list');
+        Route::get('/about-us', [PagesController::class, 'about_us'])->name('about_us');
+        Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+        Route::get('/product-details/{product_id}', [PagesController::class, 'product_details'])->name('product_details');
+        Route::get('/my-account', [PagesController::class, 'my_account'])->name('my_account');
+        
+        Route::get('/changeLocale/{locale}', [PagesController::class, 'changeLocale'])->name('changeLocale');
+        Route::get('/changeCurrency/{currencyCode}', [PagesController::class, 'changeCurrency'])->name('changeCurrency');
+        
+        Route::group(
+            ['middleware' => 'cartCheck'],
+            function () {
+                Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+                Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+                Route::post('/remove/{product_id}', [CartController::class, 'remove_product'])->name('remove_product');
+                Route::post('/remove_this_product/{product_id}', [CartController::class, 'remove_this_product'])->name('remove_this_product');
+                Route::post('/clear_cart', [CartController::class, 'clear_cart'])->name('clear_cart');
+                Route::post('/confirm_order', [CartController::class, 'confirm_order'])->name('confirm_order');
+            }
+        );
+        
+        Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
+        
+        Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth', 'isAdmin'])->name('show_order');
     }
 );
-
-Route::post('/add/{product_id}', [CartController::class, 'add_product'])->name('add_product');
-
-Route::get('/show_order', [CartController::class, 'show_order'])->middleware(['auth', 'isAdmin'])->name('show_order');
 
 require __DIR__.'/auth.php';
 

@@ -7,14 +7,13 @@ use App\Http\Requests\ConfirmOrderRequest;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function cart()
     {
-        $categories = Category::select('name')->get();
+        $categories = Category::select('name_ru', 'name_en')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
 
@@ -30,7 +29,7 @@ class CartController extends Controller
 
     public function show_order()
     {
-        $categories = Category::select('name')->get();
+        $categories = Category::select('name_ru', 'name_en')->get();
         $banner = Product::getRandomProduct();        
         $orders = Order::orderBy('id', 'desc')->paginate(10);
         return view(
@@ -49,9 +48,9 @@ class CartController extends Controller
         $product = Product::find($product_id);
         $result = (new Basket(true))->addProduct($product);
         if ($result == true) {
-            session()->flash('succes', 'Добавлен товар '.$product->full_name);
+            session()->flash('succes', __('cartContr.added_product').$product->full_name);
         } else {
-            session()->flash('warning', 'Товар '.$product->full_name.' не доступен для заказа в большем количестве');
+            session()->flash('warning', __('cartContr.product').$product->full_name.__('cartContr.not_available'));
         }
 
         return redirect()->route('cart');
@@ -61,7 +60,7 @@ class CartController extends Controller
     {
         $product = Product::find($product_id);
         (new Basket)->removeProduct($product);
-        session()->flash('warning', 'Удален товар '.$product->full_name);
+        session()->flash('warning', __('cartContr.deleted_product').$product->full_name);
 
         return redirect()->route('cart');
     }
@@ -70,7 +69,7 @@ class CartController extends Controller
     {
         $product = Product::find($product_id);
         (new Basket)->remveAllThisProduct($product);
-        session()->flash('warning', 'Удален товар '.$product->full_name);
+        session()->flash('warning', __('cartContr.deleted_product').$product->full_name);
 
         return redirect()->route('cart');
     }
@@ -79,7 +78,7 @@ class CartController extends Controller
     {
         (new Basket)->clearBasket();
         
-        session()->flash('warning', 'Заказ удален');
+        session()->flash('warning', __('cartContr.deleted_order'));
 
         return redirect()->route('cart');
     }
@@ -91,12 +90,12 @@ class CartController extends Controller
         $succes = $basket->confirmOrder($request->user_name, $email, $request->description);
         
         if ($basket->countAvailable() == false) {
-            session()->flash('error', 'Товар не доступен для заказа в полном объеме');
+            session()->flash('error', __('cartContr.product_not_available'));
             return redirect()->route('cart');
         } elseif ($succes) {
-            session()->flash('succes', 'Заказ подтвержден');
+            session()->flash('succes', __('cartContr.order_confirmed'));
         } else {
-            session()->flash('error', 'Что-то пошло не так');
+            session()->flash('error', __('cartContr.unknown_error'));
         }
 
         return redirect(route('ind_1'));

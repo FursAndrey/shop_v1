@@ -7,15 +7,16 @@ use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 class PagesController extends Controller
 {
     public function indexPage()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket())->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
+        $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
 
         return view(
             'shop/index',
@@ -29,9 +30,9 @@ class PagesController extends Controller
 
     public function indexPage2()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
-        $products = Product::select('id', 'short_name', 'img', 'price', 'count')->limit(8)->get();
+        $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
         return view(
             'shop/index-2',
             [
@@ -47,7 +48,7 @@ class PagesController extends Controller
         //log example
         Log::channel('single')->info($request->ip());
 
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
 
@@ -83,7 +84,7 @@ class PagesController extends Controller
 
     public function about_us()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -98,7 +99,7 @@ class PagesController extends Controller
 
     public function contact()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -114,7 +115,7 @@ class PagesController extends Controller
     public function product_details(int $product_id)
     {
         $product = Product::findOrFail($product_id);
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -130,7 +131,7 @@ class PagesController extends Controller
 
     public function checkout()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -145,7 +146,7 @@ class PagesController extends Controller
 
     public function my_account()
     {
-        $categories = Category::select('name', 'code')->get();
+        $categories = Category::select('name_ru', 'name_en', 'code')->get();
         $order = (new Basket)->getOrder();
         $banner = Product::getRandomProduct();
         return view(
@@ -156,5 +157,18 @@ class PagesController extends Controller
                 'order' => $order
             ]
         );
+    }
+
+    public function changeLocale($locale)
+    {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+        return redirect()->back();
+    }
+    
+    public function changeCurrency($currencyCode)
+    {
+        session(['currency' => $currencyCode]);
+        return redirect()->back();
     }
 }
