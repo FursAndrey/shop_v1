@@ -17,15 +17,16 @@ class CartCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        $orderId = session('orderId');
-        if (is_null($orderId)) {
+        $order = session('order');
+        if (is_null($order)) {
             session()->flash('warning', __('cartMiddle.not_exist_order'));
+            session()->flush('order');
             return redirect()->route('ind_1');
         }
 
-        $order = Order::findOrFail($orderId);
-        if ($order->products()->count() == 0) {
+        if (count($order->products) == 0) {
             session()->flash('warning', __('cartMiddle.empty_basket'));
+            session()->flush('order');
             return redirect()->route('ind_1');
         }
 

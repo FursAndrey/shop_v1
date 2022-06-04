@@ -18,7 +18,7 @@ class Conversion
         self::loadContainer();
         $originCurrency = self::$container[$from];
         if (is_null($to)) {
-            $to = session('currency', 'BYN');
+            $to = self::getCurCode();
         }
         $targetCurrency = self::$container[$to];
 
@@ -29,6 +29,18 @@ class Conversion
     {
         // self::loadContainer();
         return session('currency', 'BYN');
+    }
+
+    public static function getCurentCurrencyFromSession()
+    {
+        self::loadContainer();
+        $curCode = self::getCurCode();
+
+        foreach (self::$container as $currency) {
+            if ($curCode === $currency->code) {
+                return $currency;
+            }
+        }
     }
     
     protected static function loadContainer()
@@ -41,4 +53,14 @@ class Conversion
         }
     }
 
+    public static function getCurCodeById(int $cur_id)
+    {
+        self::loadContainer();
+
+        foreach (self::$container as $currency) {
+            if ($cur_id === $currency->id) {
+                return $currency->code;
+            }
+        }
+    }
 }

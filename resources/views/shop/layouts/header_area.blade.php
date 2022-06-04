@@ -120,7 +120,7 @@
                                 <i class="icon-handbag"></i>
                                 <span class="count-style">
                                     @if ($order != [])
-                                        {{ $order->CountProducts }}
+                                        {{ count($order->products) }}
                                     @else
                                         0
                                     @endif
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">{{ $product->full_name }}</a></h4>
-                                                    <h6>@lang('header.basket.qty'): {{ $product->pivot->count }}</h6>
+                                                    <h6>@lang('header.basket.qty'): {{ $product->countInOrder }}</h6>
                                                     <span>{{ $product->PriceForCount }} {{ App\Services\Conversion::getCurCode() }}</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">

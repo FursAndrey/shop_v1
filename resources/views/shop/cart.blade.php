@@ -45,7 +45,7 @@
                                                     @csrf
                                                     <button type="submit" class="addtocart-btn" title="@lang('main.add_to_cart')">+</button>
                                                 </form>
-                                                {{ $product->pivot->count }}
+                                                {{ $product->countInOrder }}
                                                 <form action="{{ route('remove_product', $product->id) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="addtocart-btn" title="Remove from cart">-</button>
@@ -68,7 +68,7 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 @if($order != [])
-                                    <h5>@lang('header.basket.total'): {{ $order->getOrderSum() }} {{ $product->curCode }}</h5>
+                                    <h5>@lang('header.basket.total'): {{ $order->getOrderSum() }} {{ App\Services\Conversion::getCurCode() }}</h5>
                                 @endif
                                 <div class="cart-shiping-update">
                                     <a href="{{ route('checkout') }}">@lang('header.menu.checkout')</a>

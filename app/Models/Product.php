@@ -30,11 +30,7 @@ class Product extends Model
 
     public function getPriceForCountAttribute()
     {
-        if (!is_null($this->pivot)) {
-            return $this->price * $this->pivot->count;
-        } else {
-            return $this->price;
-        }
+        return $this->price * $this->countInOrder;
     }
 
     public function getShortNameAttribute()
