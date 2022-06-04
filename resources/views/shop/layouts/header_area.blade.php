@@ -17,7 +17,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li class="top-hover"><a href="#">@lang('header.set_locale') () <i class="icon-arrow-down"></i></a>
+                            <li class="top-hover"><a href="#">@lang('header.set_locale') ({{ App::getLocale() }}) <i class="icon-arrow-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('changeLocale', 'ru') }}"><img alt="flag" src="{{ asset("img/icon-img/ru.png") }}"> Russian </a></li>
                                     <li><a href="{{ route('changeLocale', 'en') }}"><img alt="flag" src="{{ asset("img/icon-img/en.jpg") }}"> English </a></li>
