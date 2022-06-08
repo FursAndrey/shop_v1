@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\My\Basket;
 use App\Http\Requests\ConfirmOrderRequest;
-use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -13,30 +12,15 @@ class CartController extends Controller
 {
     public function cart()
     {
-        $categories = Category::select('name_ru', 'name_en')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
-
-        return view(
-            'shop/cart',
-            [
-                'categories' => $categories,
-                'banner' => $banner,
-                'order' => $order,
-            ]
-        );
+        return view('shop/cart', []);
     }
 
     public function show_order()
     {
-        $categories = Category::select('name_ru', 'name_en')->get();
-        $banner = Product::getRandomProduct();        
         $orders = Order::orderBy('id', 'desc')->paginate(10);
         return view(
             'shop/show_order',
             [
-                'categories' => $categories,
-                'banner' => $banner,
                 'orders' => $orders,
                 'order' => [],
             ]

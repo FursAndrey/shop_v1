@@ -17,7 +17,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li class="top-hover"><a href="#">@lang('header.set_locale') () <i class="icon-arrow-down"></i></a>
+                            <li class="top-hover"><a href="#">@lang('header.set_locale') ({{ App::getLocale() }}) <i class="icon-arrow-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('changeLocale', 'ru') }}"><img alt="flag" src="{{ asset("img/icon-img/ru.png") }}"> Russian </a></li>
                                     <li><a href="{{ route('changeLocale', 'en') }}"><img alt="flag" src="{{ asset("img/icon-img/en.jpg") }}"> English </a></li>
@@ -120,7 +120,7 @@
                                 <i class="icon-handbag"></i>
                                 <span class="count-style">
                                     @if ($order != [])
-                                        {{ $order->CountProducts }}
+                                        {{ count($order->products) }}
                                     @else
                                         0
                                     @endif
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">{{ $product->full_name }}</a></h4>
-                                                    <h6>@lang('header.basket.qty'): {{ $product->pivot->count }}</h6>
+                                                    <h6>@lang('header.basket.qty'): {{ $product->countInOrder }}</h6>
                                                     <span>{{ $product->PriceForCount }} {{ App\Services\Conversion::getCurCode() }}</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">

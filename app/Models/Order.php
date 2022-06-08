@@ -14,17 +14,24 @@ class Order extends Model
         'user_name',
         'description',
         'user_id',
+        'currency_id',
+        'sum',
     ];
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
+        return $this->belongsToMany(Product::class)->withPivot(['count', 'price'])->withTimestamps();
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
     }
 
     public function getOrderSum()
     {
         $sum = 0;
-        foreach ($this->products()->withTrashed()->get() as $product) {
+        foreach ($this->products as $product) {
             $sum += $product->getPriceForCountAttribute();
         }
         return $sum;
@@ -35,20 +42,25 @@ class Order extends Model
         return $this->products()->count();
     }
 
-    public function confirmOrder($user_name, $description)
+    public function confirmOrder(string $user_name, ?string $description)
     {
-        if ($this->status == 0) {
-            $this->user_name = $user_name;
-            $this->description = $description;
-            $this->status = 1;
-            $this->save();
-            session()->forget('orderId');
+        $this->user_name = $user_name;
+        $this->description = $description;
+        $this->status = 1;
+        $this->sum = $this->getOrderSum();
+        $this->save();
 
-            return true;
-        } else {
-            return false;
+        foreach ($this->products as $productInOrder) {
+            $this->products()->attach(
+                $productInOrder,
+                [
+                    'count' => $productInOrder->countInOrder,
+                    'price' => $productInOrder->price,
+                ]
+            );
         }
-    }
+        session()->forget('order');
 
-    
+        return true;
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\My\Basket;
 use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -14,31 +13,23 @@ class PagesController extends Controller
 {
     public function indexPage()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket())->getOrder();
         $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
 
         return view(
             'shop/index',
             [
-                'categories' => $categories,
                 'products' => $products,
-                'order' => $order
             ]
         );
     }
 
     public function indexPage2()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
         $products = Product::select('id', 'short_name_ru', 'short_name_en', 'img', 'price', 'count')->hit()->limit(8)->get();
         return view(
             'shop/index-2',
             [
-                'categories' => $categories,
                 'products' => $products,
-                'order' => $order
             ]
         );
     }
@@ -47,10 +38,6 @@ class PagesController extends Controller
     {
         //log example
         Log::channel('single')->info($request->ip());
-
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
 
         $productsQuery = Product::query();
         if (!is_null($category)) {
@@ -73,90 +60,41 @@ class PagesController extends Controller
         return view(
             'shop/shop-list',
             [
-                'categories' => $categories,
                 'this_category' => $category,
                 'products' => $products,
-                'banner' => $banner,
-                'order' => $order
             ]
         );
     }
 
     public function about_us()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
-        return view(
-            'shop/about-us',
-            [
-                'categories' => $categories,
-                'banner' => $banner,
-                'order' => $order
-            ]
-        );
+        return view('shop/about-us', []);
     }
 
     public function contact()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
-        return view(
-            'shop/contact',
-            [
-                'categories' => $categories,
-                'banner' => $banner,
-                'order' => $order
-            ]
-        );
+        return view('shop/contact', []);
     }
 
     public function product_details(int $product_id)
     {
         $product = Product::findOrFail($product_id);
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
         return view(
             'shop/product-details',
             [
-                'categories' => $categories,
                 'product' => $product,
-                'banner' => $banner,
-                'order' => $order
             ]
         );
     }
 
     public function checkout()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
-        return view(
-            'shop/checkout',
-            [
-                'categories' => $categories,
-                'banner' => $banner,
-                'order' => $order
-            ]
-        );
+        return view('shop/checkout', []);
     }
 
     public function my_account()
     {
-        $categories = Category::select('name_ru', 'name_en', 'code')->get();
-        $order = (new Basket)->getOrder();
-        $banner = Product::getRandomProduct();
-        return view(
-            'shop/my-account',
-            [
-                'categories' => $categories,
-                'banner' => $banner,
-                'order' => $order
-            ]
-        );
+        return view('shop/my-account', []);
     }
 
     public function changeLocale($locale)
