@@ -81,5 +81,6 @@ class ViewServiceProvider extends ServiceProvider
             ], 
             'App\ViewComposers\CurrenciesComposer'
         );
+        View::composer(['shop.index', 'shop/index-2'], 'App\ViewComposers\BestProductComposer');
     }
 }
