@@ -68,7 +68,7 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 @if($order != [])
-                                    <h5>@lang('header.basket.total'): {{ $order->getOrderSum() }} {{ App\Services\Conversion::getCurCode() }}</h5>
+                                    <h5>@lang('header.basket.total'): {{ $order->getOrderSum() }} {{ $curCode }}</h5>
                                 @endif
                                 <div class="cart-shiping-update">
                                     <a href="{{ route('checkout') }}">@lang('header.menu.checkout')</a>

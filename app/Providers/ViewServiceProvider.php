@@ -66,5 +66,21 @@ class ViewServiceProvider extends ServiceProvider
             ], 
             'App\ViewComposers\OrderComposer'
         );
+        View::composer(
+            [
+                'shop.index', 
+                'shop/index-2', 
+                'shop/shop-list', 
+                'shop/about-us',
+                'shop/contact',
+                'shop/product-details',
+                'shop/checkout',
+                'shop/my-account',
+                'shop/cart',
+                'shop/show_order',
+            ], 
+            'App\ViewComposers\CurrenciesComposer'
+        );
+        View::composer(['shop.index', 'shop/index-2'], 'App\ViewComposers\BestProductComposer');
     }
 }

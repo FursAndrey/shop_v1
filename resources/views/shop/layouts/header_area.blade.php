@@ -137,7 +137,7 @@
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="#">{{ $product->full_name }}</a></h4>
                                                     <h6>@lang('header.basket.qty'): {{ $product->countInOrder }}</h6>
-                                                    <span>{{ $product->PriceForCount }} {{ App\Services\Conversion::getCurCode() }}</span>
+                                                    <span>{{ $product->PriceForCount }} {{ $curCode }}</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
                                                     <form action="{{ route('remove_product', $product->id) }}" method="POST">
@@ -152,9 +152,9 @@
                                 <div class="shopping-cart-total">
                                     <h4>
                                         @if ($order != [])
-                                            @lang('header.basket.total') : <span class="shop-total">{{ $order->getOrderSum() }} {{ App\Services\Conversion::getCurCode() }}</span>
+                                            @lang('header.basket.total') : <span class="shop-total">{{ $order->getOrderSum() }} {{ $curCode }}</span>
                                         @else
-                                            @lang('header.basket.total') : <span class="shop-total">0 {{ App\Services\Conversion::getCurCode() }}</span>
+                                            @lang('header.basket.total') : <span class="shop-total">0 {{ $curCode }}</span>
                                         @endif
                                     </h4>
                                 </div>
