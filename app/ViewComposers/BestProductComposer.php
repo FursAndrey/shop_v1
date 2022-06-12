@@ -15,7 +15,6 @@ class BestProductComposer
         })->map->sum()->sortDesc()->take(1)->keys()->toArray();
 
         $bestProduct = Product::whereIn('id', $bestProductsId)->get()[0];
-// dd($bestProduct);
         $view->with('bestProduct', $bestProduct);
     }
 }
