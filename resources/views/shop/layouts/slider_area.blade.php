@@ -9,7 +9,7 @@
                                 <h3 class="animated">We keep pets for pleasure.(может добалю)</h3>
                                 <h1 class="animated">{{ $product->short_name }}</h1>
                                 <div class="slider-btn">
-                                    <a class="animated" href="{{ route('product_details', $product->id) }}">@lang('main.learn_more')</a>
+                                    <a class="animated" href="{{ route('sku_details', $product->id) }}">@lang('main.learn_more')</a>
                                 </div>
                             </div>
                         </div>

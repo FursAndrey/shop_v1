@@ -22,15 +22,25 @@ class Product extends Model
         'img',
         'category_id',
     ];
+
+    public function skus()
+    {
+        return $this->hasMany(Sku::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class);
+    }
     
     public function getImgForViewAttribute()
     {
         return 'storage/'.str_replace('\\', '/', $this->img);
-    }
-
-    public function getPriceForCountAttribute()
-    {
-        return $this->price * $this->countInOrder;
     }
 
     public function getShortNameAttribute()

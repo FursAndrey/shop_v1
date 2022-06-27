@@ -24,7 +24,7 @@ class CartCheck
             return redirect()->route('ind_1');
         }
 
-        if (count($order->products) == 0) {
+        if (count($order->skus) == 0) {
             session()->flash('warning', __('cartMiddle.empty_basket'));
             session()->flush('order');
             return redirect()->route('ind_1');

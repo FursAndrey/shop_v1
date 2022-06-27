@@ -6,6 +6,7 @@ use App\Http\My\Basket;
 use App\Http\Requests\ConfirmOrderRequest;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Sku;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -27,33 +28,33 @@ class CartController extends Controller
         );
     }
 
-    public function add_product(int $product_id)
+    public function add_sku(int $sku_id)
     {
-        $product = Product::find($product_id);
-        $result = (new Basket(true))->addProduct($product);
+        $sku = Sku::find($sku_id);
+        $result = (new Basket(true))->addSku($sku);
         if ($result == true) {
-            session()->flash('succes', __('cartContr.added_product').$product->full_name);
+            session()->flash('succes', __('cartContr.added_product').$sku->product->full_name);
         } else {
-            session()->flash('warning', __('cartContr.product').$product->full_name.__('cartContr.not_available'));
+            session()->flash('warning', __('cartContr.product').$sku->product->full_name.__('cartContr.not_available'));
         }
 
         return redirect()->route('cart');
     }
     
-    public function remove_product(int $product_id)
+    public function remove_sku(int $sku_id)
     {
-        $product = Product::find($product_id);
-        (new Basket)->removeProduct($product);
-        session()->flash('warning', __('cartContr.deleted_product').$product->full_name);
+        $sku = Sku::find($sku_id);
+        (new Basket)->removeSku($sku);
+        session()->flash('warning', __('cartContr.deleted_product').$sku->product->full_name);
 
         return redirect()->route('cart');
     }
 
-    public function remove_this_product(int $product_id)
+    public function remove_this_sku(int $sku_id)
     {
-        $product = Product::find($product_id);
-        (new Basket)->remveAllThisProduct($product);
-        session()->flash('warning', __('cartContr.deleted_product').$product->full_name);
+        $sku_id = Sku::find($sku_id);
+        (new Basket)->remveAllThisSku($sku_id);
+        session()->flash('warning', __('cartContr.deleted_product').$sku_id->product->full_name);
 
         return redirect()->route('cart');
     }

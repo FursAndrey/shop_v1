@@ -32,28 +32,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($order->products)
-                                    @foreach ($order->products as $product)
+                                @isset($order->skus)
+                                    @foreach ($order->skus as $sku)
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <img src="{{ asset("$product->imgForView") }}" alt="" style="width: 240px;">
+                                                <img src="{{ asset("$sku->product->imgForView") }}" alt="" style="width: 240px;">
                                             </td>
-                                            <td class="product-name">{{ $product->full_name }}</td>
-                                            <td class="product-price-cart"><span class="amount">{{ $product->price }} {{ $product->curCode }}</span></td>
+                                            <td class="product-name">{{ $sku->product->full_name }}</td>
+                                            <td class="product-price-cart"><span class="amount">{{ $sku->price }} {{ $sku->product->curCode }}</span></td>
                                             <td class="product-quantity">
-                                                <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                <form action="{{ route('add_product', $sku->id) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="addtocart-btn" title="@lang('main.add_to_cart')">+</button>
                                                 </form>
-                                                {{ $product->countInOrder }}
-                                                <form action="{{ route('remove_product', $product->id) }}" method="POST">
+                                                {{ $sku->countInOrder }}
+                                                <form action="{{ route('remove_product', $sku->id) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="addtocart-btn" title="Remove from cart">-</button>
                                                 </form>
                                             </td>
-                                            <td class="product-subtotal">{{ $product->PriceForCount }} {{ $product->curCode }}</td>
+                                            <td class="product-subtotal">{{ $sku->PriceForCount }} {{ $sku->product->curCode }}</td>
                                             <td class="product-remove">
-                                                <form action="{{ route('remove_this_product', $product->id) }}" method="POST">
+                                                <form action="{{ route('remove_this_product', $sku->id) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="addtocart-btn" title="Remove from cart"><i class="ti-trash"></i></button>
                                                 </form>

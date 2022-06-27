@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Sku extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'product_id',
+        'count',
+        'price',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    
+    public function propertyOptions()
+    {
+        return $this->belongsToMany(PropertyOption::class);
+    }
+    
+    public function getPriceForCountAttribute()
+    {
+        return $this->price * $this->countInOrder;
+    }
+}
