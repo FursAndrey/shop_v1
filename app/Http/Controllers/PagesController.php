@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Sku;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
@@ -39,29 +39,33 @@ class PagesController extends Controller
         //log example
         Log::channel('single')->info($request->ip());
 
-        $productsQuery = Product::query();
+        $skusQuery = Sku::with(['product', 'product.category']);
         if (!is_null($category)) {
             $categoryID = Category::select('id')->where('code', '=', "$category")->get()[0]['id'];
-            $productsQuery->where('category_id', '=', $categoryID);
+            $skusQuery->join('products', 'products.id', '=', 'skus.product_id');
+            $skusQuery->where('category_id', '=', $categoryID);
+            // dd($skusQuery->toSql());
         }
         if ($request->filled('min_price')) {
-            $productsQuery->where('price', '>=', $request->min_price);
+            $skusQuery->where('price', '>=', $request->min_price);
         }
         if ($request->filled('max_price')) {
-            $productsQuery->where('price', '<=', $request->max_price);
+            $skusQuery->where('price', '<=', $request->max_price);
         }
         foreach (['hit', 'new', 'recomended'] as $field) {
             if ($request->has($field)) {
-                $productsQuery->$field();
+                $skusQuery->whereHas('product', function ($query) use ($field) {
+                    $query->$field();
+                });
             }
         }
-        $products = $productsQuery->paginate(9)->withPath('?'.$request->getQueryString());
+        $skus = $skusQuery->paginate(9)->withPath('?'.$request->getQueryString());
 
         return view(
             'shop/shop-list',
             [
                 'this_category' => $category,
-                'products' => $products,
+                'skus' => $skus,
             ]
         );
     }
@@ -76,13 +80,13 @@ class PagesController extends Controller
         return view('shop/contact', []);
     }
 
-    public function product_details(int $product_id)
+    public function sku_details(int $sku_id)
     {
-        $product = Product::findOrFail($product_id);
+        $sku = Sku::findOrFail($sku_id);
         return view(
             'shop/product-details',
             [
-                'product' => $product,
+                'sku' => $sku,
             ]
         );
     }

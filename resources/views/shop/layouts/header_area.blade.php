@@ -120,7 +120,7 @@
                                 <i class="icon-handbag"></i>
                                 <span class="count-style">
                                     @if ($order != [])
-                                        {{ count($order->products) }}
+                                        {{ count($order->skus) }}
                                     @else
                                         0
                                     @endif
@@ -128,19 +128,19 @@
                             </button>
                             <div class="shopping-cart-content">
                                 <ul>
-                                    @isset($order->products)
-                                        @foreach ($order->products as $product)
+                                    @isset($order->skus)
+                                        @foreach ($order->skus as $sku)
                                             <li class="single-shopping-cart">
                                                 <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="{{ asset("$product->imgForView") }}" style="width: 82px;"></a>
+                                                    <a href="#"><img alt="" src="{{ asset("$sku->product->imgForView") }}" style="width: 82px;"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
-                                                    <h4><a href="#">{{ $product->full_name }}</a></h4>
-                                                    <h6>@lang('header.basket.qty'): {{ $product->countInOrder }}</h6>
-                                                    <span>{{ $product->PriceForCount }} {{ $curCode }}</span>
+                                                    <h4><a href="#">{{ $sku->product->full_name }}</a></h4>
+                                                    <h6>@lang('header.basket.qty'): {{ $sku->countInOrder }}</h6>
+                                                    <span>{{ $sku->PriceForCount }} {{ $curCode }}</span>
                                                 </div>
                                                 <div class="shopping-cart-delete">
-                                                    <form action="{{ route('remove_product', $product->id) }}" method="POST">
+                                                    <form action="{{ route('remove_product', $sku->id) }}" method="POST">
                                                         @csrf
                                                         <button type="submit" title="Remove from cart">X</button>
                                                     </form>

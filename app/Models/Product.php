@@ -23,14 +23,33 @@ class Product extends Model
         'category_id',
     ];
     
+    protected $visible = [
+        'short_name_ru',
+        'short_name_en',
+        'full_name_ru',
+        'full_name_en',
+        'description_ru',
+        'description_en',
+    ];
+
+    public function skus()
+    {
+        return $this->hasMany(Sku::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class);
+    }
+    
     public function getImgForViewAttribute()
     {
         return 'storage/'.str_replace('\\', '/', $this->img);
-    }
-
-    public function getPriceForCountAttribute()
-    {
-        return $this->price * $this->countInOrder;
     }
 
     public function getShortNameAttribute()

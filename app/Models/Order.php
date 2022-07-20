@@ -22,6 +22,11 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot(['count', 'price'])->withTimestamps();
     }
+    
+    public function skus()
+    {
+        return $this->belongsToMany(Sku::class)->withPivot(['count', 'price'])->withTimestamps();
+    }
 
     public function currency()
     {
@@ -31,15 +36,15 @@ class Order extends Model
     public function getOrderSum()
     {
         $sum = 0;
-        foreach ($this->products as $product) {
-            $sum += $product->getPriceForCountAttribute();
+        foreach ($this->skus as $sku) {
+            $sum += $sku->getPriceForCountAttribute();
         }
         return $sum;
     }
 
     public function getCountProductsAttribute()
     {
-        return $this->products()->count();
+        return $this->skus()->count();
     }
 
     public function confirmOrder(string $user_name, ?string $description)
@@ -50,12 +55,12 @@ class Order extends Model
         $this->sum = $this->getOrderSum();
         $this->save();
 
-        foreach ($this->products as $productInOrder) {
-            $this->products()->attach(
-                $productInOrder,
+        foreach ($this->skus as $skuInOrder) {
+            $this->skus()->attach(
+                $skuInOrder,
                 [
-                    'count' => $productInOrder->countInOrder,
-                    'price' => $productInOrder->price,
+                    'count' => $skuInOrder->countInOrder,
+                    'price' => $skuInOrder->price,
                 ]
             );
         }

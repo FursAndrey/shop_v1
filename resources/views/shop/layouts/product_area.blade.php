@@ -8,7 +8,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="product-wrapper mb-10">
                         <div class="product-img">
-                            <a href="{{ route('product_details', $product->id) }}">
+                            <a href="{{ route('sku_details', $product->id) }}">
                                 <img src="{{ asset($product->ImgForView) }}" alt="" style="width:270px; height:265px">
                             </a>
                             <div class="product-action">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
+                            <h4><a href="{{ route('sku_details', $product->id) }}">{{ $product->short_name }}</a></h4>
                             <div class="product-price">
                                 <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
                             </div>

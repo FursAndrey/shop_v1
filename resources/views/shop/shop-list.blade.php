@@ -19,29 +19,35 @@
                 <div class="col-lg-9">
                     <div class="grid-list-product-wrapper">
                         <div class="product-view product-list">
-                            {{ $products->links() }}
+                            {{ $skus->links() }}
                             <div class="row">
-                                @foreach ($products as $product)
+                                @foreach ($skus as $sku)
+                                    <?php
+                                    //временная заглушка для удленных продуктов
+                                    if (is_null($sku->product)) {
+                                        continue;
+                                    }
+                                    ?>
                                     <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
                                                 <div class="labels">
-                                                    @if ($product->isNew())
+                                                    @if ($sku->product->isNew())
                                                         <span class="succes">@lang('main.new')</span>
                                                     @endif
-                                                    @if ($product->isHit())
+                                                    @if ($sku->product->isHit())
                                                         <span class="danger">@lang('main.hit')</span>
                                                     @endif
-                                                    @if ($product->isRecomended())
+                                                    @if ($sku->product->isRecomended())
                                                         <span class="warning">@lang('main.recomended')</span>
                                                     @endif
                                                 </div>
-                                                <a href="{{ route('product_details', $product->id) }}">
-                                                    <img src="{{ asset($product->ImgForView) }}" style="width:270px; height:265px" alt="">
+                                                <a href="{{ route('sku_details', $sku->id) }}">
+                                                    <img src="{{ asset($sku->product->ImgForView) }}" style="width:270px; height:265px" alt="">
                                                 </a>
                                                 <div class="product-action">
-                                                    @if ($product->count > 0)
-                                                        <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                    @if ($sku->count > 0)
+                                                        <form action="{{ route('add_product', $sku->id) }}" method="POST">
                                                             @csrf
                                                             <button type="submit" title="@lang('main.add_to_cart')">
                                                                 <i class="ti-shopping-cart"></i>
@@ -54,21 +60,21 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
+                                                <h4><a href="{{ route('sku_details', $sku->id) }}">{{ $sku->product->short_name }}</a></h4>
                                                 <div class="product-price">
-                                                    <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
+                                                    <span class="new">{{ $sku->price }} {{ $sku->product->curCode }}</span>
                                                 </div>
                                             </div>
                                             <div class="product-list-content">
-                                                <h4><a href="{{ route('product_details', $product->id) }}">{{ $product->short_name }}</a></h4>
+                                                <h4><a href="{{ route('sku_details', $sku->id) }}">{{ $sku->product->short_name }}</a></h4>
                                                 <div class="product-price">
-                                                    <span class="new">{{ $product->price }} {{ $product->curCode }}</span>
+                                                    <span class="new">{{ $sku->price }} {{ $sku->product->curCode }}</span>
                                                 </div>
-                                                <p>{{ $product->description }}</p>
+                                                <p>{{ $sku->product->description }}</p>
                                                 <div class="product-list-action">
                                                     <div class="product-list-action-left">
-                                                        @if ($product->count > 0)
-                                                            <form action="{{ route('add_product', $product->id) }}" method="POST">
+                                                        @if ($sku->count > 0)
+                                                            <form action="{{ route('add_product', $sku->id) }}" method="POST">
                                                                 @csrf
                                                                 <button type="submit" class="addtocart-btn" title="@lang('main.add_to_cart')">
                                                                     <i class="ion-bag"></i>
