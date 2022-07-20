@@ -22,6 +22,15 @@ class Product extends Model
         'img',
         'category_id',
     ];
+    
+    protected $visible = [
+        'short_name_ru',
+        'short_name_en',
+        'full_name_ru',
+        'full_name_en',
+        'description_ru',
+        'description_en',
+    ];
 
     public function skus()
     {
